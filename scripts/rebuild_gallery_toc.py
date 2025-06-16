@@ -1,7 +1,7 @@
 import argparse
-import yaml
 import os
 import re
+import yaml
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--index", required=True, help="Pfad zur index.md")
