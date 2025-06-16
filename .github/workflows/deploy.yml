@@ -39,6 +39,10 @@ jobs:
       - name: Install required Python packages
         run: pip install pyyaml
 
+      - name: Dump issue body to file
+        if: github.event_name == 'issues'
+        run: echo "${{ github.event.issue.body }}" > issue_body.txt
+
       # Only for issue events: parse the issue and clone submitted repo into production/COOKBOOK_NAME
       - name: Parse Issue Data
         if: github.event_name == 'issues'
