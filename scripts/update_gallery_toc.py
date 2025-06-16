@@ -18,13 +18,19 @@ toctree_blocks = re.findall(toctree_pattern, content, flags=re.DOTALL)
 
 toc_files = []
 for block in toctree_blocks:
-    lines = block.splitlines()[1:]  
+    lines = block.splitlines()[1:]  # skip opening ```
     for line in lines:
         line = line.strip()
-        if not line or line.startswith(":"):
+        if (
+            not line
+            or line.startswith(":")
+            or line.startswith("```")
+        ):
+            continue
+        if not re.search(r"\.(md|ipynb)$", line):
             continue
         toc_files.append(args.base_path + line)
-
+        
 # 2. Lese ggf. bestehende myst.yml ein
 if os.path.exists(args.output):
     with open(args.output, "r", encoding="utf-8") as f:
