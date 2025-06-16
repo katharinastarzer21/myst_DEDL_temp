@@ -5,7 +5,7 @@ import re
 COOKBOOK_NAME = os.environ["COOKBOOK_NAME"]
 index_path = f"production/{COOKBOOK_NAME}/index.md"
 
-# 1. Titel und {toctree}-Kinder aus index.md holen
+# 1. Titel & {toctree}-Kinder aus index.md holen
 with open(index_path, encoding="utf-8") as f:
     content = f.read()
 
@@ -13,38 +13,35 @@ with open(index_path, encoding="utf-8") as f:
 match = re.search(r"^#\s+(.*)", content, re.MULTILINE)
 title = match.group(1).strip() if match else COOKBOOK_NAME
 
-# {toctree} Kinder extrahieren
-toctree_block = re.search(r"```{toctree}.*?\n(.*?)```", content, re.DOTALL)
+# {toctree} children extrahieren
+toctree = re.search(r"```{toctree}.*?\n(.*?)```", content, re.DOTALL)
 children = []
-if toctree_block:
-    # Jede nicht-leere Zeile als Kind, mit passendem Pfad
-    for line in toctree_block.group(1).splitlines():
+if toctree:
+    for line in toctree.group(1).splitlines():
         line = line.strip()
         if line:
-            # Relativen Pfad zum Cookbook-Ordner aufbauen
-            if not line.startswith("production/"):
-                file_in_cookbook = f"production/{COOKBOOK_NAME}/{line}"
-            else:
-                file_in_cookbook = line
-            children.append({"file": file_in_cookbook})
+            children.append({"file": f"production/{COOKBOOK_NAME}/{line}"})
 
 # 2. myst.yml laden
 with open("myst.yml", "r", encoding="utf-8") as f:
     myst_yml = yaml.safe_load(f)
 
 toc = myst_yml.get("toc", [])
-new_entry = {
-    "title": title,
-    "file": index_path
-}
-if children:
-    new_entry["children"] = children
+# Prüfe, ob Eintrag schon existiert (optional, falls keine Dopplung gewünscht)
+if not any(entry.get("file") == index_path for entry in toc):
+    new_entry = {
+        "title": title,
+        "file": index_path
+    }
+    if children:
+        new_entry["children"] = children
+    toc.append(new_entry)
+    myst_yml["toc"] = toc
 
-toc.append(new_entry)
-myst_yml["toc"] = toc
+    # 3. myst.yml zurückschreiben
+    with open("myst.yml", "w", encoding="utf-8") as f:
+        yaml.dump(myst_yml, f, sort_keys=False, allow_unicode=True)
 
-# 3. myst.yml zurückschreiben (site-Block & andere Einstellungen bleiben erhalten)
-with open("myst.yml", "w", encoding="utf-8") as f:
-    yaml.dump(myst_yml, f, sort_keys=False, allow_unicode=True)
-
-print(f"✅ Cookbook '{title}' mit {len(children)} children zur myst.yml hinzugefügt!")
+    print(f"✅ Cookbook '{title}' der myst.yml hinzugefügt!")
+else:
+    print(f"ℹ️ Cookbook '{title}' ist bereits im TOC.")
