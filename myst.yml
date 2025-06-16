@@ -50,4 +50,6 @@ site:
     style: ./_static/custom.css
     favicon: ./img/EUMETSAT-icon.ico
     logo: ./img/logo_bar.png
-toc: []
+toc:
+- title: FIRSTEXAMPLE
+  file: production/FIRSTEXAMPLE/index.md
