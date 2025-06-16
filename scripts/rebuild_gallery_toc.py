@@ -12,20 +12,19 @@ with open(index_path, encoding="utf-8") as f:
 match = re.search(r"^#\s+(.*)", content, re.MULTILINE)
 title = match.group(1).strip() if match else COOKBOOK_NAME
 
-# {toctree} children extrahieren
+# {toctree} children extrahieren und immer /notebooks/ davorhängen
 toctree_block = re.search(r"```{toctree}.*?\n(.*?)```", content, re.DOTALL)
 children = []
 if toctree_block:
-    # Alle Zeilen im Block holen
     for line in toctree_block.group(1).splitlines():
         line = line.strip()
-        # Nur Zeilen, die wie ein (Notebook-)Pfad aussehen (keine Optionen, kein :maxdepth:)
-        if line and not line.startswith(":") and not line.startswith("#"):
-            # Optional: Nur .md oder .ipynb aufnehmen
-            if line.endswith(".md") or line.endswith(".ipynb"):
-                children.append({"file": f"production/{COOKBOOK_NAME}/{line}"})
+        if not line or line.startswith(":") or line.startswith("#"):
+            continue
+        # Nur Dateinamen zulassen, kein kompletter Pfad
+        file_name = os.path.basename(line)
+        child_path = f"production/{COOKBOOK_NAME}/notebooks/{file_name}"
+        children.append({"file": child_path})
 
-# myst.yml laden
 with open("myst.yml", "r", encoding="utf-8") as f:
     myst_yml = yaml.safe_load(f)
 
