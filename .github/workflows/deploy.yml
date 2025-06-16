@@ -52,7 +52,7 @@ jobs:
       - name: Clone submitted repository into production
         if: github.event_name == 'issues'
         run: |
-          COOK_NAME="${{ env.ROOT_PATH }}"
+          COOK_NAME="$ROOT_PATH"
           git clone "$REPO_URL" "production/$COOK_NAME"
           # If no index.md, but README.md exists, rename
           if [ -f "production/$COOK_NAME/README.md" ] && [ ! -f "production/$COOK_NAME/index.md" ]; then
