@@ -1,76 +1,32 @@
-import argparse
 import os
-import re
 import yaml
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--index", required=True, help="Pfad zur index.md")
-parser.add_argument("--title", required=True, help="Projekttitel")
-parser.add_argument("--base-path", required=True, help="Basis-Pfad, z.B. production/MYCOOKBOOK/")
-parser.add_argument("--output", default="myst.yml", help="Pfad für die zu speichernde myst.yml")
-args = parser.parse_args()
+PROD_DIR = "production"
+MYST_YML = "myst.yml"
 
-with open(args.index, "r", encoding="utf-8") as f:
-    content = f.read()
-
-toctree_pattern = r"```{toctree}.*?```"
-toctree_blocks = re.findall(toctree_pattern, content, flags=re.DOTALL)
-
-toc_files = []
-for block in toctree_blocks:
-    lines = block.splitlines()[1:]  # skip opening ```
-    for line in lines:
-        line = line.strip()
-        if (
-            not line
-            or line.startswith(":")
-            or line.startswith("```")
-        ):
-            continue
-        if not re.search(r"\.(md|ipynb)$", line):
-            continue
-        toc_files.append(args.base_path + line)
-        
-# 2. Lese ggf. bestehende myst.yml ein
-if os.path.exists(args.output):
-    with open(args.output, "r", encoding="utf-8") as f:
-        myst_config = yaml.safe_load(f)
-    if myst_config is None:
-        myst_config = {}
-else:
-    myst_config = {}
-
-# 3. Initialisiere Grundstruktur, falls nötig
-if "version" not in myst_config:
-    myst_config["version"] = 1
-if "project" not in myst_config:
-    myst_config["project"] = {}
-if "site" not in myst_config:
-    myst_config["site"] = {"template": "book-theme"}
-if "toc" not in myst_config["project"]:
-    myst_config["project"]["toc"] = []
-
-toc = myst_config["project"]["toc"]
-
-# 4. Prüfe, ob Cookbook bereits im TOC ist
-cookbook_file = args.base_path + "index.md"
-already = False
-for entry in toc:
-    if entry.get("file") == cookbook_file:
-        already = True
-        # Optional: aktualisiere die Children, falls sie sich ändern
-        entry["children"] = [{"file": f} for f in toc_files]
-        break
-
-if not already:
+toc = []
+for name in sorted(os.listdir(PROD_DIR)):
+    path = os.path.join(PROD_DIR, name)
+    index_md = os.path.join(path, "index.md")
+    if os.path.isdir(path) and os.path.exists(index_md):
+        # Try to get title from first headline, fallback to folder name
+        with open(index_md, encoding="utf-8") as f:
+            for line in f:
+                if line.startswith("#"):
+                    title = line.lstrip("#").strip()
+                    break
+            else:
+                title = name
         toc.append({
-            "title": args.title,
-            "file": cookbook_file,
-            "children": [{"file": f} for f in toc_files]
+            "title": title,
+            "file": f"{PROD_DIR}/{name}/index.md"
         })
 
-# 5. Schreibe myst.yml zurück
-with open(args.output, "w", encoding="utf-8") as f:
-    yaml.dump(myst_config, f, sort_keys=False, allow_unicode=True)
+myst = {
+    "version": 1,
+    "project": {"title": "DEDL Cookbook Gallery", "toc": toc},
+    "site": {"template": "book-theme"}
+}
 
-print(f"✅ myst.yml wurde aktualisiert: {args.output}")
+with open(MYST_YML, "w", encoding="utf-8") as f:
+    yaml.dump(myst, f, sort_keys=False, allow_unicode=True)
