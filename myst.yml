@@ -1,7 +1,6 @@
 version: 1
 project:
   title: DEDL notebook gallery
-  
   toc:
   - file: README.md
   - title: HDA
@@ -44,10 +43,11 @@ project:
       - file: production/STACK/ExtremeDT-DataCube.ipynb
       - file: production/STACK/ExtremeDT-DataCube-xViewer.ipynb
       - file: production/STACK/DEDL_StackService_Dask.ipynb
-
-site: 
+  - title: My Example Cookbook
+    file: production/FIRSTEXAMPLE/index.md
+site:
   template: book-theme
-  options:
+  options: null
   style: ./_static/custom.css
   favicon: ./img/EUMETSAT-icon.ico
   logo: ./img/logo_bar.png
