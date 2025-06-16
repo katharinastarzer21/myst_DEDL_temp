@@ -3,8 +3,16 @@ import yaml
 
 PROD_DIR = "production"
 MYST_YML = "myst.yml"
+ROOT_README = "README.md"
 
 toc = []
+
+# Optionally add root README.md as the very first entry if it exists
+if os.path.exists(ROOT_README):
+    toc.append({"file": ROOT_README})
+
+# Collect cookbook entries
+cookbook_entries = []
 for name in sorted(os.listdir(PROD_DIR)):
     path = os.path.join(PROD_DIR, name)
     if not os.path.isdir(path):
@@ -36,16 +44,30 @@ for name in sorted(os.listdir(PROD_DIR)):
         if fname.endswith((".md", ".ipynb")):
             children.append({"file": f"{PROD_DIR}/{name}/{fname}"})
 
-    toc.append({
+    entry = {
         "title": title,
         "file": f"{PROD_DIR}/{name}/{main_file}",
-        "children": children if children else None
-    })
+    }
+    if children:
+        entry["children"] = children
 
-# Remove empty children (optional, keeps YAML clean)
-for entry in toc:
-    if entry.get("children") is None:
-        del entry["children"]
+    cookbook_entries.append(entry)
+
+# Ensure the first entry after root README.md (if present) does NOT have children
+if not toc:
+    # If no root README, move the first entry without children to the top if possible
+    for i, entry in enumerate(cookbook_entries):
+        if "children" not in entry:
+            toc.append(entry)
+            cookbook_entries.pop(i)
+            break
+    # If all entries have children, forcibly remove 'children' from the first one
+    if not toc and cookbook_entries:
+        first = cookbook_entries.pop(0)
+        first.pop("children", None)
+        toc.append(first)
+
+toc.extend(cookbook_entries)
 
 myst = {
     "version": 1,
