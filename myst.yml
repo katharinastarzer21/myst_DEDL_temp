@@ -2,12 +2,7 @@ version: 1
 project:
   id: e0a20a08-c498-4ecc-8022-c5f820333f35
   title: DEDL notebook gallery
-  site: null
-  template: book-theme
-  options:
-    style: ./_static/custom.css
-    favicon: ./img/EUMETSAT-icon.ico
-    logo: ./img/logo_bar.png
+  
   toc:
   - file: README.md
   - title: HDA
@@ -52,3 +47,10 @@ project:
       - file: production/STACK/DEDL_StackService_Dask.ipynb
   - title: My Example Cookbook
     file: production/FIRSTEXAMPLE/index.md
+    
+    site: 
+      template: book-theme
+      options:
+        style: ./_static/custom.css
+        favicon: ./img/EUMETSAT-icon.ico
+        logo: ./img/logo_bar.png
