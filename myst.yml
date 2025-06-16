@@ -1,6 +1,5 @@
 version: 1
 project:
-  id: e0a20a08-c498-4ecc-8022-c5f820333f35
   title: DEDL notebook gallery
 toc:
   - file: README.md         
