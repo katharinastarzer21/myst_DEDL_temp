@@ -4,6 +4,7 @@ project:
   title: DEDL notebook gallery
   toc:
   - file: README.md
+  -title: HOOK
     children:
     - file: production/HOOK/README.md
     - file: production/HOOK/gallery.md
