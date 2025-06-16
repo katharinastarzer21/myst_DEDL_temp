@@ -68,8 +68,12 @@ jobs:
       - name: Install MyST CLI
         run: npm install -g mystmd
 
-      - name: Rebuild central myst.yml (all cookbooks)
+      - name: Append new cookbook to myst.yml
+        if: github.event_name == 'issues'
         run: python scripts/rebuild_gallery_toc.py
+        env:
+          COOKBOOK_NAME: ${{ env.ROOT_PATH }}
+
 
       - name: Build main gallery
         run: myst build --html
