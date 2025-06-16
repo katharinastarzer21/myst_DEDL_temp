@@ -43,7 +43,8 @@ project:
       - file: production/STACK/ExtremeDT-DataCube.ipynb
       - file: production/STACK/ExtremeDT-DataCube-xViewer.ipynb
       - file: production/STACK/DEDL_StackService_Dask.ipynb
-
+  - title: My Example Cookbook
+    children: production/FIRSTEXAMPLE/index.md
 site:
   template: book-theme
   options: null
