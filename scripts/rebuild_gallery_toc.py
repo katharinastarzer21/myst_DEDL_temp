@@ -26,8 +26,11 @@ if toctree:
 with open("myst.yml", "r", encoding="utf-8") as f:
     myst_yml = yaml.safe_load(f)
 
-toc = myst_yml.get("toc", [])
-# Prüfe, ob Eintrag schon existiert (optional, falls keine Dopplung gewünscht)
+# 3. project -> toc erweitern
+project = myst_yml.get("project", {})
+toc = project.get("toc", [])
+
+# Prüfe, ob dieser Eintrag schon existiert
 if not any(entry.get("file") == index_path for entry in toc):
     new_entry = {
         "title": title,
@@ -36,12 +39,13 @@ if not any(entry.get("file") == index_path for entry in toc):
     if children:
         new_entry["children"] = children
     toc.append(new_entry)
-    myst_yml["toc"] = toc
+    project["toc"] = toc
+    myst_yml["project"] = project
 
-    # 3. myst.yml zurückschreiben
+    # 4. myst.yml zurückschreiben
     with open("myst.yml", "w", encoding="utf-8") as f:
         yaml.dump(myst_yml, f, sort_keys=False, allow_unicode=True)
 
-    print(f"✅ Cookbook '{title}' der myst.yml hinzugefügt!")
+    print(f"✅ Cookbook '{title}' der myst.yml (project.toc) hinzugefügt!")
 else:
     print(f"ℹ️ Cookbook '{title}' ist bereits im TOC.")
