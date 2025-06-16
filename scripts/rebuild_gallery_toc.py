@@ -34,7 +34,7 @@ toc = project.get("toc", [])
 if not any(entry.get("file") == index_path for entry in toc):
     new_entry = {
         "title": title,
-        "file": index_path
+        "children": index_path
     }
     if children:
         new_entry["children"] = children
