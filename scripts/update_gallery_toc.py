@@ -10,17 +10,15 @@ parser.add_argument("--base-path", required=True, help="Basis-Pfad, z.B. product
 parser.add_argument("--output", default="myst.yml", help="Pfad für die zu speichernde myst.yml")
 args = parser.parse_args()
 
-# 1. Lese index.md und extrahiere Toctree-Einträge
 with open(args.index, "r", encoding="utf-8") as f:
     content = f.read()
 
-# Suche nach {toctree} Block
 toctree_pattern = r"```{toctree}.*?```"
 toctree_blocks = re.findall(toctree_pattern, content, flags=re.DOTALL)
 
 toc_files = []
 for block in toctree_blocks:
-    lines = block.splitlines()[1:]  # skip opening ```
+    lines = block.splitlines()[1:]  
     for line in lines:
         line = line.strip()
         if not line or line.startswith(":"):
