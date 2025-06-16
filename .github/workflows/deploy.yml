@@ -1,50 +1,111 @@
-# This file was created automatically with `myst init --gh-pages` 🪄 💚
-# Ensure your GitHub Pages settings for this repository are set to deploy with **GitHub Actions**.
+name: MyST Deploy & Cookbook Integration
 
-name: MyST GitHub Pages Deploy
 on:
   push:
-    # Runs on pushes targeting the default branch
     branches: [main]
+  issues:
+    types: [closed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  id-token: write
+  pages: write
+
 env:
-  # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.
-  # E.g., if your site lives at `https://mydomain.org/myproject`, set `BASE_URL=/myproject`.
-  # If, instead, your site lives at the root of the domain, at `https://mydomain.org`, set `BASE_URL=''`.
   BASE_URL: /${{ github.event.repository.name }}
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: 'pages'
-  cancel-in-progress: false
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build-and-deploy:
     runs-on: ubuntu-latest
+
+    if: github.event_name != 'issues' || github.event.issue.user.login == 'katharinastarzer21'
+
+    env:
+      GALLERY_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+
     steps:
-      - name: Install required Python packages
-        run: pip install pyyaml mystmd
       - uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x
-      - name: Install MyST Markdown
+
+      - name: Install required Python packages
+        run: pip install pyyaml
+
+      - name: Install MyST CLI
         run: npm install -g mystmd
-      - name: Build HTML Assets
+
+      - name: Dump issue body to file
+        if: github.event_name == 'issues'
+        run: echo "${{ github.event.issue.body }}" > issue_body.txt
+
+      # Only for issue events: parse the issue and clone submitted repo into production/COOKBOOK_NAME
+      - name: Parse Issue Data
+        if: github.event_name == 'issues'
+        id: parse
+        run: python scripts/parse_issue.py
+
+      - name: Clone submitted repository into production
+        if: github.event_name == 'issues'
+        run: |
+          COOK_NAME="$ROOT_PATH"
+          git clone "$REPO_URL" "temp_repo"
+          rm -rf "temp_repo/.git"
+          mkdir -p "production/$COOK_NAME"
+          cp -r temp_repo/* "production/$COOK_NAME/"
+          # If no index.md, but README.md exists, rename
+          if [ -f "production/$COOK_NAME/README.md" ] && [ ! -f "production/$COOK_NAME/index.md" ]; then
+            mv "production/$COOK_NAME/README.md" "production/$COOK_NAME/index.md"
+          fi
+          rm -rf temp_repo
+        env:
+          REPO_URL: ${{ env.REPO_URL }}
+
+      - name: Append new cookbook to myst.yml
+        if: github.event_name == 'issues'
+        run: python scripts/rebuild_gallery_toc.py
+        env:
+          COOKBOOK_NAME: ${{ env.ROOT_PATH }}
+
+      - name: Build main gallery
         run: myst build --html
-      - name: Upload artifact
+
+      - name: Prepare deploy folder
+        run: |
+          mkdir -p full_site
+          cp -r _build/html/* full_site/
+
+      - name: Upload deploy artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './_build/html'
+          path: full_site
+
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
+        id: deployment
+
+      - name: Comment with production link
+        if: github.event_name == 'issues'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ✅ **Cookbook deployed!**
+            📘 [${{ env.COOKBOOK_TITLE }}](${{ env.GALLERY_URL }}/production/${{ env.ROOT_PATH }}/index.html)
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add myst.yml production/
+          git commit -m "Update myst.yml and production after issue close [skip ci]" || echo "Nothing to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
