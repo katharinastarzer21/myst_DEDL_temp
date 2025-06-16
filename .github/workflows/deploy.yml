@@ -74,7 +74,6 @@ jobs:
         env:
           COOKBOOK_NAME: ${{ env.ROOT_PATH }}
 
-
       - name: Build main gallery
         run: myst build --html
 
