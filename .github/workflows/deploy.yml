@@ -59,12 +59,23 @@ jobs:
       - name: Clone submitted repository
         if: github.event_name == 'issues'
         run: |
-          git clone "$REPO_URL" submitted_repo
-          if [ -f submitted_repo/README.md ] && [ ! -f submitted_repo/index.md ]; then
-            cp submitted_repo/README.md submitted_repo/index.md
+          git clone "$REPO_URL" tmp_repo
+          COOK_NAME="${{ env.ROOT_PATH }}"
+          rm -rf "production/$COOK_NAME"
+          mkdir -p production
+          mv tmp_repo "production/$COOK_NAME"
+          # Falls keine index.md, aber README.md existiert, umbenennen
+          if [ -f "production/$COOK_NAME/README.md" ] && [ ! -f "production/$COOK_NAME/index.md" ]; then
+            mv "production/$COOK_NAME/README.md" "production/$COOK_NAME/index.md"
           fi
         env:
           REPO_URL: ${{ env.REPO_URL }}
+
+      - name: Install MyST CLI
+        run: npm install -g mystmd
+
+      - name: Rebuild central myst.yml (all cookbooks)
+        run: python scripts/rebuild_gallery_toc.py
 
       - name: Ensure myst.yml exists
         if: github.event_name == 'issues'
