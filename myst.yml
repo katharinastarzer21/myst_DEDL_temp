@@ -50,6 +50,3 @@ site:
     style: ./_static/custom.css
     favicon: ./img/EUMETSAT-icon.ico
     logo: ./img/logo_bar.png
-toc:
-- title: My Example Cookbook
-  file: production/FIRSTEXAMPLE/index.md
