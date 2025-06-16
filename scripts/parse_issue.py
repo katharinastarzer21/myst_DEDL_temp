@@ -47,8 +47,8 @@ print(f"→ Root Path    : {root_path}")
 
 # Abort if root path is missing
 if not root_path:
-    print("🛑 ERROR: Root Path could not be extracted – aborting.")
-    raise ValueError("Root Path konnte nicht extrahiert werden – Abbruch.")
+    print("ERROR: Root Path could not be extracted aborting.")
+    raise ValueError("Root Path konnte nicht extrahiert werden Abbruch.")
 
 # Export env vars
 with open(os.environ['GITHUB_ENV'], 'a') as env_file:
