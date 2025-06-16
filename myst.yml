@@ -2,13 +2,12 @@ version: 1
 project:
   id: e0a20a08-c498-4ecc-8022-c5f820333f35
   title: DEDL notebook gallery
-  toc:
-  - file: README.md
+toc:
+  - file: README.md         
   - title: HOOK
+    file: production/HOOK/README.md
     children:
-    - file: production/HOOK/README.md
-    - file: production/HOOK/gallery.md
-      children:
+      - file: production/HOOK/gallery.md
       - file: production/HOOK/Tutorial.ipynb
       - file: production/HOOK/DEDL-Hook_access.ipynb
 site:
