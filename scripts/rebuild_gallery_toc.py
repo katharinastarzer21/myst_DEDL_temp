@@ -5,7 +5,6 @@ import re
 COOKBOOK_NAME = os.environ["COOKBOOK_NAME"]
 index_path = f"production/{COOKBOOK_NAME}/index.md"
 
-# 1. Titel & {toctree}-Kinder aus index.md holen
 with open(index_path, encoding="utf-8") as f:
     content = f.read()
 
@@ -14,23 +13,25 @@ match = re.search(r"^#\s+(.*)", content, re.MULTILINE)
 title = match.group(1).strip() if match else COOKBOOK_NAME
 
 # {toctree} children extrahieren
-toctree = re.search(r"```{toctree}.*?\n(.*?)```", content, re.DOTALL)
+toctree_block = re.search(r"```{toctree}.*?\n(.*?)```", content, re.DOTALL)
 children = []
-if toctree:
-    for line in toctree.group(1).splitlines():
+if toctree_block:
+    # Alle Zeilen im Block holen
+    for line in toctree_block.group(1).splitlines():
         line = line.strip()
-        if line:
-            children.append({"file": f"production/{COOKBOOK_NAME}/{line}"})
+        # Nur Zeilen, die wie ein (Notebook-)Pfad aussehen (keine Optionen, kein :maxdepth:)
+        if line and not line.startswith(":") and not line.startswith("#"):
+            # Optional: Nur .md oder .ipynb aufnehmen
+            if line.endswith(".md") or line.endswith(".ipynb"):
+                children.append({"file": f"production/{COOKBOOK_NAME}/{line}"})
 
-# 2. myst.yml laden
+# myst.yml laden
 with open("myst.yml", "r", encoding="utf-8") as f:
     myst_yml = yaml.safe_load(f)
 
-# 3. project -> toc erweitern
 project = myst_yml.get("project", {})
 toc = project.get("toc", [])
 
-# Prüfe, ob dieser Eintrag schon existiert
 if not any(entry.get("file") == index_path for entry in toc):
     new_entry = {
         "title": title,
@@ -42,7 +43,6 @@ if not any(entry.get("file") == index_path for entry in toc):
     project["toc"] = toc
     myst_yml["project"] = project
 
-    # 4. myst.yml zurückschreiben
     with open("myst.yml", "w", encoding="utf-8") as f:
         yaml.dump(myst_yml, f, sort_keys=False, allow_unicode=True)
 
