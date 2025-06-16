@@ -37,7 +37,7 @@ jobs:
           node-version: 18.x
 
       - name: Install required Python packages
-        run: pip install pyyaml
+        run: pip install pyyaml mystmd
 
       - name: Dump issue body to file
         if: github.event_name == 'issues'
