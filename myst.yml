@@ -45,9 +45,9 @@ project:
       - file: production/STACK/ExtremeDT-DataCube-xViewer.ipynb
       - file: production/STACK/DEDL_StackService_Dask.ipynb
 
-  site: 
-    template: book-theme
-    options:
-    style: ./_static/custom.css
-    favicon: ./img/EUMETSAT-icon.ico
-    logo: ./img/logo_bar.png
+site: 
+  template: book-theme
+  options:
+  style: ./_static/custom.css
+  favicon: ./img/EUMETSAT-icon.ico
+  logo: ./img/logo_bar.png
