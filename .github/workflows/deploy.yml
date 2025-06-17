@@ -60,14 +60,10 @@ jobs:
           rm -rf "temp_repo/.git"
           mkdir -p "production/$COOK_NAME"
           cp -r temp_repo/* "production/$COOK_NAME/"
-          # If no index.md, but README.md exists, rename
-          if [ -f "production/$COOK_NAME/README.md" ] && [ ! -f "production/$COOK_NAME/index.md" ]; then
-            mv "production/$COOK_NAME/README.md" "production/$COOK_NAME/index.md"
-          fi
           rm -rf temp_repo
         env:
           REPO_URL: ${{ env.REPO_URL }}
-
+          
       - name: Append new cookbook to myst.yml
         if: github.event_name == 'issues'
         run: python scripts/rebuild_gallery_toc.py
