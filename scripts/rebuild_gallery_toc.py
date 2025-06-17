@@ -1,29 +1,29 @@
 import os
 import yaml
-import re
 
 COOKBOOK_NAME = os.environ["COOKBOOK_NAME"]
-index_path = f"production/{COOKBOOK_NAME}/index.md"
 
-with open(index_path, encoding="utf-8") as f:
-    content = f.read()
+cookbook_dir = f"production/{COOKBOOK_NAME}"
+readme_file = f"{cookbook_dir}/README.md"
+gallery_file = f"{cookbook_dir}/gallery.md"
+notebooks_dir = f"{cookbook_dir}/notebooks"
 
-# Titel extrahieren
-match = re.search(r"^#\s+(.*)", content, re.MULTILINE)
-title = match.group(1).strip() if match else COOKBOOK_NAME
+notebook_files = []
+if os.path.isdir(notebooks_dir):
+    for f in sorted(os.listdir(notebooks_dir)):
+        if f.endswith(".ipynb"):
+            notebook_files.append({"file": f"{notebooks_dir}/{f}"})
 
-# {toctree} children extrahieren und immer /notebooks/ davorhängen
-toctree_block = re.search(r"```{toctree}.*?\n(.*?)```", content, re.DOTALL)
-children = []
-if toctree_block:
-    for line in toctree_block.group(1).splitlines():
-        line = line.strip()
-        if not line or line.startswith(":") or line.startswith("#"):
-            continue
-        # Nur Dateinamen zulassen, kein kompletter Pfad
-        file_name = os.path.basename(line)
-        child_path = f"production/{COOKBOOK_NAME}/notebooks/{file_name}"
-        children.append({"file": child_path})
+if os.path.isfile(readme_file):
+    with open(readme_file, encoding="utf-8") as f:
+        for line in f:
+            if line.startswith("# "):
+                title = line[2:].strip()
+                break
+        else:
+            title = COOKBOOK_NAME
+else:
+    title = COOKBOOK_NAME
 
 with open("myst.yml", "r", encoding="utf-8") as f:
     myst_yml = yaml.safe_load(f)
@@ -31,13 +31,18 @@ with open("myst.yml", "r", encoding="utf-8") as f:
 project = myst_yml.get("project", {})
 toc = project.get("toc", [])
 
-if not any(entry.get("file") == index_path for entry in toc):
+if not any(entry.get("title") == title for entry in toc):
+   
     new_entry = {
         "title": title,
-        "children": index_path
+        "children": [
+            {"file": readme_file},
+            {
+                "file": gallery_file,
+                "children": notebook_files
+            }
+        ]
     }
-    if children:
-        new_entry["children"] = children
     toc.append(new_entry)
     project["toc"] = toc
     myst_yml["project"] = project
@@ -45,6 +50,6 @@ if not any(entry.get("file") == index_path for entry in toc):
     with open("myst.yml", "w", encoding="utf-8") as f:
         yaml.dump(myst_yml, f, sort_keys=False, allow_unicode=True)
 
-    print(f"✅ Cookbook '{title}' der myst.yml (project.toc) hinzugefügt!")
+    print(f"✅ Cookbook '{title}' als Section korrekt in myst.yml eingetragen!")
 else:
     print(f"ℹ️ Cookbook '{title}' ist bereits im TOC.")
