@@ -1,6 +1,5 @@
 name: "Add New Cookbook"
 description: "Submit a repository to be added to the gallery"
-title: "[Cookbook] "
 labels: ["add-repo"]
 assignees: []
 body:
