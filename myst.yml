@@ -45,7 +45,6 @@ project:
       - file: production/STACK/DEDL_StackService_Dask.ipynb
   - title: My Example Cookbook
     children: 
-      - file: production/FIRSTEXAMPLE/index.md
       - file: production/FIRSTEXAMPLE/notebooks/chapter1.ipynb
       - file: production/FIRSTEXAMPLE/notebooks/root.ipynb
 
