@@ -50,7 +50,13 @@ project:
       children:
       - file: production/FIRSTEXAMPLE/notebooks/chapter1.ipynb
       - file: production/FIRSTEXAMPLE/notebooks/root.ipynb
-
+  - title: My Cookbook
+    children:
+    - file: production/NEWBOOK/README.md
+    - file: production/NEWBOOK/gallery.md
+      children:
+      - file: production/NEWBOOK/notebooks/chapter1.ipynb
+      - file: production/NEWBOOK/notebooks/root.ipynb
 site:
   template: book-theme
   options: null
