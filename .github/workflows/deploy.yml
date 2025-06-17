@@ -55,11 +55,12 @@ jobs:
       - name: Clone submitted repository into production
         if: github.event_name == 'issues'
         run: |
-          COOK_NAME="$ROOT_PATH"
+          ROOT_PATH="$ROOT_PATH"
+          COOKBOOK_TITLE="$COOKBOOK_TITLE"
           git clone "$REPO_URL" "temp_repo"
           rm -rf "temp_repo/.git"
-          mkdir -p "production/$COOK_NAME"
-          cp -r temp_repo/* "production/$COOK_NAME/"
+          mkdir -p "production/$ROOT_PATH"
+          cp -r temp_repo/* "production/$ROOT_PATH/"
           rm -rf temp_repo
         env:
           REPO_URL: ${{ env.REPO_URL }}

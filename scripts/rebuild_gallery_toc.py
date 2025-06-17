@@ -1,9 +1,10 @@
 import os
 import yaml
 
-COOKBOOK_NAME = os.environ["COOKBOOK_NAME"]
+COOKBOOK_NAME = os.environ["COOKBOOK_TITLE"]
+ROOT_PATH = os.environ["ROOT_PATH"]
 
-cookbook_dir = f"production/{COOKBOOK_NAME}"
+cookbook_dir = f"production/{ROOT_PATH}"
 readme_file = f"{cookbook_dir}/README.md"
 gallery_file = f"{cookbook_dir}/gallery.md"
 notebooks_dir = f"{cookbook_dir}/notebooks"
