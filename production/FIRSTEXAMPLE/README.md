@@ -1,10 +1,12 @@
 # Cookbook Template
 
-This is a template for submitting cookbooks to the DEDL Notebook Gallery.
+This repository serves as a template for submitting cookbooks to the DEDL Notebook Gallery.
 
 ## How to use
 
-1. Clone this repository
-2. Add your notebooks in the `notebooks/` folder
-3. Edit `index.md` to include your notebooks
-4. Submit your repository link via the Gallery submission issue form
+1. Clone this repository.
+2. Add your notebooks to the `notebooks/` folder.
+3. Update `gallery.md` to list your notebooks.
+4. Edit this `README.md` to briefly explain the purpose and content of your cookbook.
+5. Submit the link to your repository via the Gallery submission issue form.
+
