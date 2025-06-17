@@ -15,16 +15,7 @@ if os.path.isdir(notebooks_dir):
         if f.endswith(".ipynb"):
             notebook_files.append({"file": f"{notebooks_dir}/{f}"})
 
-if os.path.isfile(readme_file):
-    with open(readme_file, encoding="utf-8") as f:
-        for line in f:
-            if line.startswith("# "):
-                title = line[2:].strip()
-                break
-        else:
-            title = COOKBOOK_NAME
-else:
-    title = COOKBOOK_NAME
+title = COOKBOOK_NAME
 
 with open("myst.yml", "r", encoding="utf-8") as f:
     myst_yml = yaml.safe_load(f)
