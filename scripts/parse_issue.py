@@ -16,9 +16,7 @@ print(body)
 fields = {
     "Repository URL": "",
     "Cookbook Title": "",
-    "Short Description": "",
-    "Thumbnail Image URL": "",
-    "Root Path Name": ""
+    "Root Path Name": "",
 }
 
 lines = body.splitlines()
@@ -35,14 +33,11 @@ for line in lines:
 repo_url = fields["Repository URL"]
 title = fields["Cookbook Title"]
 description = fields["Short Description"]
-thumbnail = fields["Thumbnail Image URL"]
 root_path = fields["Root Path Name"]
 
 print(f"🔍 Extracted Fields:")
 print(f"→ Repo URL     : {repo_url}")
 print(f"→ Title        : {title}")
-print(f"→ Description  : {description}")
-print(f"→ Thumbnail    : {thumbnail}")
 print(f"→ Root Path    : {root_path}")
 
 # Abort if root path is missing
@@ -55,7 +50,5 @@ with open(os.environ['GITHUB_ENV'], 'a') as env_file:
     env_file.write(f"REPO_URL={repo_url}\n")
     env_file.write(f"ROOT_PATH={root_path}\n")
     env_file.write(f"COOKBOOK_TITLE={title}\n")
-    env_file.write(f"COOKBOOK_DESCRIPTION={description}\n")
-    env_file.write(f"COOKBOOK_THUMBNAIL={thumbnail}\n")
 
 print("✅ Environment variables exported for GitHub Actions")

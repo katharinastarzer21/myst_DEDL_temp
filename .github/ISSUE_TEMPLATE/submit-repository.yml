@@ -20,23 +20,9 @@ body:
     validations:
       required: true
   - type: input
-    id: description
-    attributes:
-      label: "Short Description"
-      placeholder: "What is this cookbook about?"
-    validations:
-      required: true
-  - type: input
-    id: thumbnail
-    attributes:
-      label: "Thumbnail Image URL"
-      placeholder: "https://link.to/image.jpg"
-    validations:
-      required: false
-  - type: input
     id: root_path
     attributes:
       label: "Root Path Name"
-      placeholder: "MyCookbookFolder"
+      placeholder: "COOKBOOKNAME"
     validations:
       required: true
