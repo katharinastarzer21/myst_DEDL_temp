@@ -46,6 +46,8 @@ project:
   - title: My Example Cookbook
     children: 
       - file: production/FIRSTEXAMPLE/index.md
+      - file: production/FIRSTEXAMPLE/notebooks/chapter1.ipynb
+      - file: production/FIRSTEXAMPLE/notebooks/root.ipynb
 
 site:
   template: book-theme
