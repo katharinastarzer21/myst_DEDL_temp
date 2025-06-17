@@ -32,7 +32,6 @@ for line in lines:
 
 repo_url = fields["Repository URL"]
 title = fields["Cookbook Title"]
-description = fields["Short Description"]
 root_path = fields["Root Path Name"]
 
 print(f"🔍 Extracted Fields:")
