@@ -68,8 +68,18 @@ jobs:
       - name: Build cookbook only
         run: |
           cd staging/$ROOT_PATH
-          myst build --html
+          myst build --html || exit 1
           cd ../..
+
+      - name: List build output for debug
+        run: |
+          if [ -d "staging/$ROOT_PATH/_build/html" ]; then
+            echo "Build output for staging/$ROOT_PATH/_build/html:"
+            ls -l staging/$ROOT_PATH/_build/html
+          else
+            echo "❌ Kein Build-Output gefunden in staging/$ROOT_PATH/_build/html"
+            exit 1
+          fi
 
       - name: Prepare deploy folder
         run: |
