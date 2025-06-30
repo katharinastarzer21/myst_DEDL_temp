@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   issues: write
   id-token: write
   pages: write
@@ -18,7 +18,6 @@ jobs:
   build-and-preview:
     runs-on: ubuntu-latest
 
-    # Only run if issue is opened by specific users (optional)
     if: >
       github.event_name != 'issues' ||
       (
@@ -48,16 +47,13 @@ jobs:
         run: npm install -g mystmd
 
       - name: Dump issue body to file
-        if: github.event_name == 'issues'
         run: echo "${{ github.event.issue.body }}" > issue_body.txt
 
       - name: Parse Issue Data
-        if: github.event_name == 'issues'
         id: parse
         run: python scripts/parse_issue.py
 
       - name: Clone submitted repository into staging
-        if: github.event_name == 'issues'
         run: |
           ROOT_PATH="$ROOT_PATH"
           COOKBOOK_TITLE="$COOKBOOK_TITLE"
@@ -68,35 +64,31 @@ jobs:
           rm -rf temp_repo
         env:
           REPO_URL: ${{ env.REPO_URL }}
-          
-      - name: Append new cookbook to myst.yml (optional for staging)
-        if: github.event_name == 'issues'
-        run: python scripts/rebuild_gallery_toc.py
-        env:
-          COOKBOOK_NAME: ${{ env.ROOT_PATH }}
 
-      - name: Build main gallery
-        run: myst build --html
+      - name: Build cookbook only
+        run: |
+          cd staging/$ROOT_PATH
+          myst build --html
+          cd ../..
 
       - name: Prepare deploy folder
         run: |
-          mkdir -p full_site
-          cp -r _build/html/* full_site/
+          mkdir -p preview_site
+          cp -r staging/$ROOT_PATH/_build/html/* preview_site/
 
       - name: Upload deploy artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: full_site
+          path: preview_site
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         id: deployment
 
       - name: Comment with preview link
-        if: github.event_name == 'issues'
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            👀 **Preview deployed!**
-            📘 [${{ env.COOKBOOK_TITLE }} (Staging)](${{ env.GALLERY_URL }}/staging/${{ env.ROOT_PATH }}/index.html)
+            👀 **Staging Preview deployed!**
+            [${{ env.COOKBOOK_TITLE }} (Preview)](${{ env.GALLERY_URL }}/preview_site/index.html)
