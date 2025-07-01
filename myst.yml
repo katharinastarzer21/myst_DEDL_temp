@@ -82,13 +82,7 @@ project:
       - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_CLIMATE.ipynb
       - file: production/HDA/CDS_data/DEDL-HDA-EO.ECMWF.DAT.REANALYSIS_ERA5_SINGLE_LEVELS.ipynb
       - file: production/HDA/EODAG/HDA-EODAG-quick-start.ipynb
-  - title: NEW
-    children:
-    - file: production/NEWCOOKBOOK/README.md
-    - file: production/NEWCOOKBOOK/gallery.md
-      children:
-      - file: production/NEWCOOKBOOK/notebooks/chapter1.ipynb
-      - file: production/NEWCOOKBOOK/notebooks/chapter2.ipynb
+
 site:
   template: book-theme
   options: null
