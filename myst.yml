@@ -84,14 +84,6 @@ project:
           - file: production/HDA/CDS_data/DEDL-HDA-EO.ECMWF.DAT.REANALYSIS_ERA5_SINGLE_LEVELS.ipynb
           - file: production/HDA/EODAG/HDA-EODAG-quick-start.ipynb
           
-  - title: My Example Cookbook
-    children: 
-    - file: production/FIRSTEXAMPLE/README.md
-    - file: production/FIRSTEXAMPLE/gallery.md
-      children:
-      - file: production/FIRSTEXAMPLE/notebooks/chapter1.ipynb
-      - file: production/FIRSTEXAMPLE/notebooks/root.ipynb
-
 site:
   template: book-theme
   options: null
