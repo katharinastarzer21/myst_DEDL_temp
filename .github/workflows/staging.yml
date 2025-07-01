@@ -48,16 +48,11 @@ jobs:
       - name: Parse Issue Data
         id: parse
         run: python scripts/parse_issue.py
-        # Ensure this sets $ROOT_PATH, $REPO_URL, $COOKBOOK_TITLE
+        # sets $ROOT_PATH, $REPO_URL, $COOKBOOK_TITLE
 
       - name: Clone submitted repository into staging
         run: |
-          ROOT_PATH="$ROOT_PATH"
-          git clone "$REPO_URL" "temp_repo"
-          rm -rf "temp_repo/.git"
-          mkdir -p "staging/$ROOT_PATH"
-          cp -r temp_repo/* "staging/$ROOT_PATH/"
-          rm -rf temp_repo
+          git clone "$REPO_URL" "staging/$ROOT_PATH"
         env:
           REPO_URL: ${{ env.REPO_URL }}
 
@@ -65,12 +60,13 @@ jobs:
         run: |
           cd "staging/$ROOT_PATH"
           myst build --html
-          cd ../..
+          cd ../../
 
-      - name: Prepare staging deploy folder
+      - name: Prepare deploy folder for staging
         run: |
-          mkdir -p full_site/staging
-          cp -r staging/* full_site/staging/
+          mkdir -p full_site/staging/"$ROOT_PATH"
+          cp -r staging/"$ROOT_PATH"/_build/html/. full_site/staging/"$ROOT_PATH"/
+          touch full_site/.nojekyll
 
       - name: Upload staging artifact
         uses: actions/upload-pages-artifact@v3
@@ -87,4 +83,4 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             ✨ **Staging preview ready!**
-            [${{ env.COOKBOOK_TITLE }} Preview](${{ env.GALLERY_URL }}/staging/${{ env.ROOT_PATH }}/README.html)
+            [${{ env.COOKBOOK_TITLE }} Preview](${{ env.GALLERY_URL }}/staging/${{ env.ROOT_PATH }}/index.html)
