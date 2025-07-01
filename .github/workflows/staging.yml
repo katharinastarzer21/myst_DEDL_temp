@@ -7,12 +7,23 @@ on:
 
 permissions:
   contents: read
-  pages: write
+  issues: write
   id-token: write
+  pages: write
+
+env:
+  BASE_URL: /${{ github.event.repository.name }}
 
 jobs:
   build-and-preview:
     runs-on: ubuntu-latest
+
+    if: >
+      github.event_name == 'issues' &&
+      (github.actor == 'katharinastarzer21' || github.actor == 'koenifra')
+
+    env:
+      GALLERY_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
     steps:
       - uses: actions/checkout@v4
@@ -31,49 +42,30 @@ jobs:
       - name: Install MyST CLI
         run: npm install -g mystmd
 
-      - name: Parse Issue Data (get repo URL and name)
+      - name: Dump issue body to file
+        run: echo "${{ github.event.issue.body }}" > issue_body.txt
+
+      - name: Parse Issue Data
         id: parse
-        run: |
-          echo "${{ github.event.issue.body }}" > issue_body.txt
-          python3 <<EOF
-          import re
-          import os
-          body = open('issue_body.txt').read()
-          # Try to find a GitHub repo URL in the body
-          m = re.search(r'https://github.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)', body)
-          if m:
-              org, repo = m.groups()
-              repo_url = f"https://github.com/{org}/{repo}.git"
-              repo_name = repo
-              print(f"::set-output name=repo_url::{repo_url}")
-              print(f"::set-output name=repo_name::{repo_name}")
-              with open(os.environ['GITHUB_ENV'], 'a') as f:
-                  f.write(f"REPO_URL={repo_url}\nREPO_NAME={repo_name}\n")
-          else:
-              raise Exception("No GitHub repo URL found in issue body")
-          EOF
+        run: python scripts/parse_issue.py
+        # sets $ROOT_PATH, $REPO_URL, $COOKBOOK_TITLE
 
       - name: Clone submitted repository into staging
         run: |
-          git clone "$REPO_URL" "staging/$REPO_NAME"
+          git clone "$REPO_URL" "staging/$ROOT_PATH"
         env:
           REPO_URL: ${{ env.REPO_URL }}
-          REPO_NAME: ${{ env.REPO_NAME }}
 
-      - name: Build the submitted repo
+      - name: Build staging cookbook
         run: |
-          cd "staging/$REPO_NAME"
+          cd "staging/$ROOT_PATH"
           myst build --html
-          cd ../..
-
-      - name: List build output for debugging
-        run: |
-          ls -l staging/"$REPO_NAME"/_build/html || echo "No build output found"
+          cd ../../
 
       - name: Prepare deploy folder for staging
         run: |
-          mkdir -p full_site/staging/"$REPO_NAME"
-          cp -r staging/"$REPO_NAME"/_build/html/. full_site/staging/"$REPO_NAME"/
+          mkdir -p full_site/staging/"$ROOT_PATH"
+          cp -r staging/"$ROOT_PATH"/_build/html/. full_site/staging/"$ROOT_PATH"/
           touch full_site/.nojekyll
 
       - name: Upload staging artifact
@@ -85,10 +77,10 @@ jobs:
         uses: actions/deploy-pages@v4
         id: deployment
 
-      - name: Print preview URL as comment
+      - name: Comment with preview link
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            ✨ **Staging preview deployed!**
-            [Preview in staging](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/staging/${{ env.REPO_NAME }}/index.html)
+            ✨ **Staging preview ready!**
+            [${{ env.COOKBOOK_TITLE }} Preview](${{ env.GALLERY_URL }}/staging/${{ env.ROOT_PATH }}/index.html)
