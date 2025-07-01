@@ -2,7 +2,7 @@ name: MyST Staging Preview
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
   workflow_dispatch:
 
 permissions:
@@ -11,9 +11,19 @@ permissions:
   id-token: write
   pages: write
 
+env:
+  BASE_URL: /${{ github.event.repository.name }}
+
 jobs:
   build-and-preview:
     runs-on: ubuntu-latest
+
+    if: >
+      github.event_name == 'issues' &&
+      (github.actor == 'katharinastarzer21' || github.actor == 'koenifra')
+
+    env:
+      GALLERY_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +48,7 @@ jobs:
       - name: Parse Issue Data
         id: parse
         run: python scripts/parse_issue.py
+        # Ensure this sets $ROOT_PATH, $REPO_URL, $COOKBOOK_TITLE
 
       - name: Clone submitted repository into staging
         run: |
@@ -50,33 +61,21 @@ jobs:
         env:
           REPO_URL: ${{ env.REPO_URL }}
 
-      - name: Build cookbook only
+      - name: Build staging cookbook
         run: |
-          cd staging/$ROOT_PATH
+          cd "staging/$ROOT_PATH"
           myst build --html
           cd ../..
 
-      - name: List after build
+      - name: Prepare staging deploy folder
         run: |
-          echo "Inhalt nach Build in staging/$ROOT_PATH/_build:"
-          ls -l staging/$ROOT_PATH/_build || echo "Kein _build Ordner"
-          echo "Inhalt nach Build in staging/$ROOT_PATH/_build/html:"
-          ls -l staging/$ROOT_PATH/_build/html || echo "Kein html Ordner"
+          mkdir -p full_site/staging
+          cp -r staging/* full_site/staging/
 
-      - name: Prepare deploy folder
-        run: |
-          mkdir -p preview_site
-          if [ -d "staging/$ROOT_PATH/_build/html" ]; then
-            cp -r staging/$ROOT_PATH/_build/html/* preview_site/
-          else
-            echo "❌ Build fehlgeschlagen oder kein HTML-Ausgabeordner gefunden."
-            exit 1
-          fi
-
-      - name: Upload deploy artifact
+      - name: Upload staging artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: preview_site
+          path: full_site
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
@@ -87,5 +86,5 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            👀 **Staging Preview deployed!**
-            [Vorschau ansehen](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/index.html)
+            ✨ **Staging preview ready!**
+            [${{ env.COOKBOOK_TITLE }} Preview](${{ env.GALLERY_URL }}/staging/${{ env.ROOT_PATH }}/README.html)
