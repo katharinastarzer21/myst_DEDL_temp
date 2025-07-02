@@ -82,13 +82,7 @@ project:
       - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_CLIMATE.ipynb
       - file: production/HDA/CDS_data/DEDL-HDA-EO.ECMWF.DAT.REANALYSIS_ERA5_SINGLE_LEVELS.ipynb
       - file: production/HDA/EODAG/HDA-EODAG-quick-start.ipynb
-  - title: GeoTEST
-    children:
-    - file: production/GEOTEST/README.md
-    - file: production/GEOTEST/gallery.md
-      children:
-      - file: production/GEOTEST/notebooks/chapter1.ipynb
-      - file: production/GEOTEST/notebooks/chapter2.ipynb
+  
 site:
   template: book-theme
   options: null
