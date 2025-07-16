@@ -48,13 +48,6 @@ jobs:
         id: parse
         run: python scripts/parse_issue.py
 
-      - name: Set env vars from parse script
-        if: github.event_name == 'issues'
-        run: |
-          echo "ROOT_PATH=$(cat .github_env/ROOT_PATH)" >> $GITHUB_ENV
-          echo "COOKBOOK_TITLE=$(cat .github_env/COOKBOOK_TITLE)" >> $GITHUB_ENV
-          echo "REPO_URL=$(cat .github_env/REPO_URL)" >> $GITHUB_ENV
-
       - name: Clone submitted repository into production
         if: github.event_name == 'issues'
         run: |
