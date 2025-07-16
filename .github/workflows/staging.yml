@@ -17,7 +17,7 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     env:
       GALLERY_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
@@ -48,6 +48,13 @@ jobs:
         id: parse
         run: python scripts/parse_issue.py
 
+      - name: Set env vars from parse script
+        if: github.event_name == 'issues'
+        run: |
+          echo "ROOT_PATH=$(cat .github_env/ROOT_PATH)" >> $GITHUB_ENV
+          echo "COOKBOOK_TITLE=$(cat .github_env/COOKBOOK_TITLE)" >> $GITHUB_ENV
+          echo "REPO_URL=$(cat .github_env/REPO_URL)" >> $GITHUB_ENV
+
       - name: Clone submitted repository into production
         if: github.event_name == 'issues'
         run: |
@@ -61,13 +68,14 @@ jobs:
         env:
           REPO_URL: ${{ env.REPO_URL }}
 
-      - name: Build main gallery
-        run: myst build --html
+      - name: Build only the new cookbook
+        run: myst build staging/${{ env.ROOT_PATH }} --html
 
       - name: Prepare deploy folder
         run: |
-          mkdir -p full_site
-          cp -r _build/html/* full_site/
+          mkdir -p full_site/staging/${{ env.ROOT_PATH }}
+          cp -r staging/${{ env.ROOT_PATH }}/_build/html/* full_site/staging/${{ env.ROOT_PATH }}/
+
 
       - name: Upload deploy artifact
         uses: actions/upload-pages-artifact@v3
