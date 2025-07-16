@@ -1,12 +1,14 @@
-name: MyST Staging Preview
+name: MyST Staging
 
 on:
+  push:
+    branches: [main]
   issues:
-    types: [edited]
+    types: [labeled, opened]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
   id-token: write
   pages: write
@@ -15,12 +17,17 @@ env:
   BASE_URL: /${{ github.event.repository.name }}
 
 jobs:
-  build-and-preview:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     if: >
-      github.event_name == 'issues' &&
-      (github.actor == 'katharinastarzer21' || github.actor == 'koenifra')
+      github.event_name != 'issues' ||
+      (
+        github.event_name == 'issues' &&
+        github.event.action == 'closed' &&
+        (github.actor == 'katharinastarzer21' || github.actor == 'koenifra')
+      )
+
 
     env:
       GALLERY_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
@@ -43,32 +50,37 @@ jobs:
         run: npm install -g mystmd
 
       - name: Dump issue body to file
+        if: github.event_name == 'issues'
         run: echo "${{ github.event.issue.body }}" > issue_body.txt
 
+      # Only for issue events: parse the issue and clone submitted repo into production/COOKBOOK_NAME
       - name: Parse Issue Data
+        if: github.event_name == 'issues'
         id: parse
         run: python scripts/parse_issue.py
-        # sets $ROOT_PATH, $REPO_URL, $COOKBOOK_TITLE
 
-      - name: Clone submitted repository into staging
+      - name: Clone submitted repository into production
+        if: github.event_name == 'issues'
         run: |
-          git clone "$REPO_URL" "staging/$ROOT_PATH"
+          ROOT_PATH="$ROOT_PATH"
+          COOKBOOK_TITLE="$COOKBOOK_TITLE"
+          git clone "$REPO_URL" "temp_repo"
+          rm -rf "temp_repo/.git"
+          mkdir -p "staging/$ROOT_PATH"
+          cp -r temp_repo/* "staging/$ROOT_PATH/"
+          rm -rf temp_repo
         env:
           REPO_URL: ${{ env.REPO_URL }}
 
-      - name: Build staging cookbook
-        run: |
-          cd "staging/$ROOT_PATH"
-          myst build --html
-          cd ../../
+      - name: Build main gallery
+        run: myst build --html
 
-      - name: Prepare deploy folder for staging
+      - name: Prepare deploy folder
         run: |
-          mkdir -p full_site/staging/"$ROOT_PATH"
-          cp -r staging/"$ROOT_PATH"/_build/html/. full_site/staging/"$ROOT_PATH"/
-          touch full_site/.nojekyll
+          mkdir -p full_site
+          cp -r _build/html/* full_site/
 
-      - name: Upload staging artifact
+      - name: Upload deploy artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: full_site
@@ -77,10 +89,21 @@ jobs:
         uses: actions/deploy-pages@v4
         id: deployment
 
-      - name: Comment with preview link
+      - name: Comment with staging link
+        if: github.event_name == 'issues'
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            ✨ **Staging preview ready!**
-            [${{ env.COOKBOOK_TITLE }} Preview](${{ env.GALLERY_URL }}/staging/${{ env.ROOT_PATH }}/index.html)
+            ✅ **Cookbook deployed!**
+            📘 [${{ env.COOKBOOK_TITLE }}](${{ env.GALLERY_URL }}/staging/${{ env.ROOT_PATH }}/index.html)
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add myst.yml staging/
+          git commit -m "Update myst.yml and staging after issue close [skip ci]" || echo "Nothing to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
