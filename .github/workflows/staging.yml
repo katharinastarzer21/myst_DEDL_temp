@@ -2,7 +2,7 @@ name: MyST Staging Preview
 
 on:
   issues:
-    types: [opened, edited]
+    types: [edited]
   workflow_dispatch:
 
 permissions:
