@@ -1,8 +1,6 @@
 name: MyST Staging
 
 on:
-  push:
-    branches: [main]
   issues:
     types: [labeled, opened]
   workflow_dispatch:
