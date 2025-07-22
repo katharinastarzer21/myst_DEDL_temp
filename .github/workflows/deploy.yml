@@ -78,6 +78,9 @@ jobs:
         env:
           COOKBOOK_NAME: ${{ env.ROOT_PATH }}
 
+      - name: Generate Filterable Gallery Page
+        run: python scripts/generate_gallery.py
+
       - name: Build main gallery
         run: myst build --html
 
