@@ -1,0 +1,78 @@
+<div id="tag-filter-buttons" style="margin-bottom: 1rem;"></div>
+<div id="gallery-container" class="gallery"></div>
+
+<script>
+const galleryData = [
+  {
+    "title": "HDA-PyStac-Client",
+    "file": "production/HDA/PySTAC/HDA-PyStac-Client.ipynb",
+    "tags": ["datenanalyse", "statistik"],
+    "parent": "HDA"
+  },
+  {
+    "title": "ExtremeDT-dataAvailability",
+    "file": "production/HDA/DestinE_Digital_Twins/ExtremeDT-dataAvailability.ipynb",
+    "tags": ["datenanalyse", "statistik"],
+    "parent": "HDA"
+  }
+];
+
+function buildGallery(data) {
+  const container = document.getElementById("gallery-container");
+  const filterContainer = document.getElementById("tag-filter-buttons");
+  const allTags = new Set();
+  data.forEach(entry => entry.tags.forEach(tag => allTags.add(tag)));
+
+  const allButton = document.createElement("button");
+  allButton.textContent = "Alle";
+  allButton.onclick = () => updateGallery("");
+  filterContainer.appendChild(allButton);
+
+  Array.from(allTags).sort().forEach(tag => {
+    const btn = document.createElement("button");
+    btn.textContent = tag;
+    btn.onclick = () => updateGallery(tag);
+    filterContainer.appendChild(btn);
+  });
+
+  data.forEach(entry => {
+    const card = document.createElement("div");
+    card.className = "gallery-card";
+    card.setAttribute("data-tags", entry.tags.join(","));
+    const link = entry.file.replace(".ipynb", ".html");
+    card.innerHTML = `
+      <h3><a href="${link}">${entry.title}</a></h3>
+      <p><strong>Pfad:</strong> ${entry.file}</p>
+      <p><strong>Tags:</strong> ${entry.tags.join(", ")}</p>`;
+    container.appendChild(card);
+  });
+
+  function updateGallery(tag) {
+    document.querySelectorAll(".gallery-card").forEach(card => {
+      const tags = card.getAttribute("data-tags").split(",");
+      card.style.display = tag === "" || tags.includes(tag) ? "block" : "none";
+    });
+  }
+
+  updateGallery("");
+}
+document.addEventListener("DOMContentLoaded", () => buildGallery(galleryData));
+</script>
+
+<style>
+#tag-filter-buttons button {
+  margin: 0.3em;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background: #f1f1f1;
+  cursor: pointer;
+}
+.gallery-card {
+  border: 1px solid #ddd;
+  padding: 1em;
+  border-radius: 8px;
+  margin-bottom: 1em;
+  background: #fcfcfc;
+}
+</style>
