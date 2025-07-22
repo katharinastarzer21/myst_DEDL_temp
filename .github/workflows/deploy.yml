@@ -81,9 +81,6 @@ jobs:
       - name: Generate Filterable Gallery Page
         run: python scripts/generate_gallery.py
 
-      - name: Ensure gallery_fragment.html is available for MyST include
-        run: cp gallery_fragment.html index.md .
-
       - name: Build main gallery
         run: myst build --html
 
