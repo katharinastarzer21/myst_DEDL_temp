@@ -18,7 +18,7 @@
 <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px;">
 
   <div style="display: flex; align-items: center; border: 1px solid #cddff1; border-radius: 6px; padding: 12px 18px; background-color: #f9fbfe; box-shadow: 1px 1px 4px #dfeaf5;">
-    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail"
+    <img src="img/favicon.svg" alt="Notebook Thumbnail"
          style="width: 50px; height: 50px; object-fit: contain; margin-right: 24px; flex-shrink: 0;">
     <div style="flex: 1; font-size: 0.95em; line-height: 1.5;">
       <strong style="font-size: 1.05em;">Hook Tutorial – Data Harvest</strong><br>
