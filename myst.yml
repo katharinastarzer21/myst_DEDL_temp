@@ -1,6 +1,6 @@
 version: 1
 project:
-  title: DEDL notebook gallery
+  title: DEDL Notebook Gallery
   toc:
   - file: index.md
   - title: HDA
