@@ -2,7 +2,7 @@ version: 1
 project:
   title: DEDL notebook gallery
   toc:
-  - file: index.html
+  - file: gallery_fragment.html
   - title: HDA
     children:
     - file: production/HDA/README.md
