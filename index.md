@@ -8,6 +8,23 @@
   <a href="Tutorial.ipynb">View Notebook</a>
 </div>
 
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+  <div style="flex: 1 1 40%; border: 1px solid #dde8f3; padding: 1em; box-shadow: 2px 2px 6px #e1ecf4; border-radius: 8px;">
+    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px;">
+    <h3 style="margin-top: 0.2em;">DEDL - Hook Tutorial – Data Harvest</h3>
+    <p style="font-size: 0.95em;">This notebook demonstrates how to use the Hook service.</p>
+    <p>
+      <span style="display:inline-block; background-color:#F2F7FD; border-radius:12px; padding:4px 10px; margin:2px; font-size:0.85em;">Authentication</span>
+      <span style="display:inline-block; background-color:#F2F7FD; border-radius:12px; padding:4px 10px; margin:2px; font-size:0.85em;">Workflow</span>
+      <span style="display:inline-block; background-color:#F2F7FD; border-radius:12px; padding:4px 10px; margin:2px; font-size:0.85em;">Storage</span>
+    </p>
+    <a href="Tutorial.ipynb" style="font-weight: bold; font-size: 0.9em; text-decoration: none; color: #1d70b8;">🔗 View Notebook</a>
+  </div>
+
+</div>
+
+
 <div style="flex: 1 1 45%; border: 1px solid #ccc; padding: 1em; box-shadow: 2px 2px 5px #ddd;">
   <h3>Access to Hook services</h3>
   <p>Retrieval of a token appropriate for interaction with the OnDemand Processing API (Hook API) and listing of available Hooks (Processors) using the retrieved token</p>
