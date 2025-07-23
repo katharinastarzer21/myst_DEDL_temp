@@ -1,98 +1,56 @@
+import os
+import nbformat
 import yaml
 from pathlib import Path
 
-with open("myst.yml", "r") as f:
-    config = yaml.safe_load(f)
+GALLERY_PATH = Path("gallery_fragment.html")
+ROOT_DIR = Path("production")
 
-entries = []
+def extract_metadata_from_notebook(nb_path):
+    try:
+        nb = nbformat.read(nb_path, as_version=4)
+        first_cell = nb.cells[0]
+        if first_cell.cell_type == "markdown" and first_cell.source.strip().startswith("---"):
+            parts = first_cell.source.strip().split('---')
+            if len(parts) >= 3:
+                yaml_content = parts[1]
+                metadata = yaml.safe_load(yaml_content)
+                metadata["file"] = str(nb_path).replace("\\", "/")
+                return metadata
+    except Exception as e:
+        print(f"[WARN] {nb_path}: {e}")
+    return None
 
-def extract_entries(children, parent=None):
-    for item in children:
-        if isinstance(item, dict):
-            file = item.get("file")
-            tags = item.get("tags", [])
-            title = item.get("title", Path(file).stem if file else None)
-            if file and file.endswith(".ipynb"):
-                entries.append({
-                    "title": title,
-                    "file": file,
-                    "tags": tags,
-                    "parent": parent
-                })
-            elif "children" in item:
-                extract_entries(item["children"], parent=item.get("title", parent))
+def build_html_card(md):
+    tags_html = "".join(f"<span>{tag}</span>" for tag in md.get("tags", []))
+    author_html = f"<p class='meta'>✍️ {md.get('author', '')} | 🪪 {md.get('license', '')}</p>" if md.get("author") else ""
+    return f"""
+    <div class="card" data-tags="{','.join(md.get('tags', []))}">
+        <img src="{md.get('thumbnail', 'img/thumbs/default.png')}" alt="thumbnail">
+        <h3><a href="{md['file'].replace('.ipynb', '.html')}">{md.get('title', 'Untitled')}</a></h3>
+        <p>{md.get('description', '')}</p>
+        {author_html}
+        <div class="tags">{tags_html}</div>
+    </div>
+    """
 
-toc = config.get("project", {}).get("toc", [])
-extract_entries(toc)
+def main():
+    print("[INFO] Scanning notebooks...")
+    all_metadata = []
+    for path in ROOT_DIR.rglob("*.ipynb"):
+        md = extract_metadata_from_notebook(path)
+        if md:
+            all_metadata.append(md)
 
-# Baue HTML
-html = ['<div id="tag-filter-buttons" style="margin-bottom: 1rem;"></div>']
-html.append('<div id="gallery-container" class="gallery"></div>')
+    print(f"[INFO] {len(all_metadata)} notebooks with metadata found.")
 
-html.append("<script>const galleryData = " + str(entries).replace("'", '"') + ";</script>")
+    with open(GALLERY_PATH, "w", encoding="utf-8") as f:
+        f.write('<div class="gallery">\n')
+        for md in all_metadata:
+            f.write(build_html_card(md))
+        f.write('\n</div>\n')
 
-html.append("""
-<script>
-function buildGallery(data) {
-  const container = document.getElementById("gallery-container");
-  const filterContainer = document.getElementById("tag-filter-buttons");
-  const allTags = new Set();
-  data.forEach(entry => entry.tags.forEach(tag => allTags.add(tag)));
+    print(f"[INFO] Gallery written to: {GALLERY_PATH}")
 
-  const allButton = document.createElement("button");
-  allButton.textContent = "Alle";
-  allButton.onclick = () => updateGallery("");
-  filterContainer.appendChild(allButton);
-
-  Array.from(allTags).sort().forEach(tag => {
-    const btn = document.createElement("button");
-    btn.textContent = tag;
-    btn.onclick = () => updateGallery(tag);
-    filterContainer.appendChild(btn);
-  });
-
-  data.forEach(entry => {
-    const card = document.createElement("div");
-    card.className = "gallery-card";
-    card.setAttribute("data-tags", entry.tags.join(","));
-    const link = entry.file.replace(".ipynb", ".html");
-    card.innerHTML = `
-      <h3><a href="${link}">${entry.title}</a></h3>
-      <p><strong>Pfad:</strong> ${entry.file}</p>
-      <p><strong>Tags:</strong> ${entry.tags.join(", ")}</p>`;
-    container.appendChild(card);
-  });
-
-  function updateGallery(tag) {
-    document.querySelectorAll(".gallery-card").forEach(card => {
-      const tags = card.getAttribute("data-tags").split(",");
-      card.style.display = tag === "" || tags.includes(tag) ? "block" : "none";
-    });
-  }
-
-  updateGallery("");
-}
-document.addEventListener("DOMContentLoaded", () => buildGallery(galleryData));
-</script>
-
-<style>
-#tag-filter-buttons button {
-  margin: 0.3em;
-  padding: 0.4em 0.8em;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  background: #f1f1f1;
-  cursor: pointer;
-}
-.gallery-card {
-  border: 1px solid #ddd;
-  padding: 1em;
-  border-radius: 8px;
-  margin-bottom: 1em;
-  background: #fcfcfc;
-}
-</style>
-""")
-
-Path("gallery_fragment.html").write_text("\n".join(html))
-print("✅ gallery_fragment.html erstellt")
+if __name__ == "__main__":
+    main()

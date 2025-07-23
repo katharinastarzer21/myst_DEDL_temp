@@ -1,10 +1,7 @@
----
-title: Destination Earth Notebook Gallery
-description: Filterbare Galerie aus myst.yml
-html:
-  toc: false
----
+# Willkommen zur DEDL Notebook Gallery
 
-# Notebook Gallery
+Diese Seite zeigt ein automatisch generiertes Beispiel mit 1 Notebook.
 
-```{include} gallery_fragment.html
+```{raw} html
+<!-- Eingebundene Galerie -->
+{% include gallery_fragment.html %}
