@@ -1,3 +1,26 @@
+<div style="display: flex; flex-wrap: wrap; gap: 20px; max-width: 900px;">
+
+  <div style="display: flex; width: 100%; max-width: 850px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 1px 1px 4px #ddd; overflow: hidden; background-color: #fff;">
+    <div style="flex: 0 0 160px; height: 120px; overflow: hidden;">
+      <img src="img/favicon.svg" alt="Sentinel 1"
+           style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div style="padding: 12px 16px; display: flex; flex-direction: column; justify-content: center; flex: 1;">
+      <div style="font-weight: bold; color: #1a56db; font-size: 1em; margin-bottom: 6px;">Sentinel 1</div>
+      <div style="font-size: 0.9em; color: #333; margin-bottom: 8px;">
+        The Copernicus Sentinel-1 mission, part of the EU's Earth observation program, delivers vital radar imaging for environmental monitoring, disaster re...
+      </div>
+      <div>
+        <span style="display:inline-block; background-color:#eee; border-radius:6px; padding:3px 8px; margin-right: 6px; font-size: 0.75em; color: #333;">Sentinel1</span>
+        <span style="display:inline-block; background-color:#eee; border-radius:6px; padding:3px 8px; font-size: 0.75em; color: #333;">Imagery</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
 <div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px;">
 
   <div style="display: flex; align-items: center; border: 1px solid #cddff1; border-radius: 6px; padding: 10px 14px; background-color: #f9fbfe; box-shadow: 1px 1px 4px #dfeaf5;">
