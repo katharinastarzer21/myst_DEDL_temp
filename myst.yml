@@ -94,3 +94,5 @@ site:
   nav:
   - Startseite: index.md
   - Galerie: production/gallery.md
+  static:
+   - img
