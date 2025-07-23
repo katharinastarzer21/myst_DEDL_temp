@@ -1,3 +1,24 @@
+<div style="display: flex; flex-direction: column; gap: 12px;">
+
+  <div style="display: flex; border: 1px solid #dde8f3; background-color: #f9fbfe; box-shadow: 1px 1px 4px #e1ecf4; border-radius: 8px; padding: 10px; align-items: flex-start; max-width: 600px;">
+    
+    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail" style="width: 80px; height: 80px; object-fit: contain; border-radius: 6px; margin-right: 14px; flex-shrink: 0;">
+
+    <div style="flex: 1;">
+      <h4 style="margin: 0 0 6px 0; font-size: 1em;">Hook Tutorial – Data Harvest</h4>
+      <p style="margin: 0 0 8px 0; font-size: 0.85em;">Using the Hook service to harvest EO data.</p>
+      <p style="margin: 0 0 8px 0;">
+        <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:3px 8px; margin:2px; font-size:0.75em;">Authentication</span>
+        <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:3px 8px; margin:2px; font-size:0.75em;">Workflow</span>
+      </p>
+      <a href="Tutorial.ipynb" style="font-size: 0.8em; color: #1d70b8; font-weight: bold; text-decoration: none;">🔗 View Notebook</a>
+    </div>
+
+  </div>
+
+</div>
+
+
 <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
 
   <div style="flex: 1 1 240px; max-width: 280px; border: 1px solid #dde8f3; padding: 0.8em; box-shadow: 1px 1px 4px #e1ecf4; border-radius: 8px; background-color: #f9fbfe;">
