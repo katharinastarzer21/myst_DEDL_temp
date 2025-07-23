@@ -1,4 +1,32 @@
 
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+
+  <div style="flex: 1 1 300px; max-width: 360px; border: 1px solid #dde8f3; padding: 1em; box-shadow: 2px 2px 6px #e1ecf4; border-radius: 8px; background-color: #f9fbfe;">
+    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px;">
+    <h3 style="margin-top: 0.2em;">DEDL - Hook Tutorial – Data Harvest</h3>
+    <p style="font-size: 0.9em;">This notebook demonstrates how to use the Hook service.</p>
+    <p>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:12px; padding:4px 10px; margin:2px; font-size:0.8em;">Authentication</span>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:12px; padding:4px 10px; margin:2px; font-size:0.8em;">Workflow</span>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:12px; padding:4px 10px; margin:2px; font-size:0.8em;">Storage</span>
+    </p>
+    <a href="Tutorial.ipynb" style="font-weight: bold; font-size: 0.9em; text-decoration: none; color: #1d70b8;">🔗 View Notebook</a>
+  </div>
+
+  <div style="flex: 1 1 300px; max-width: 360px; border: 1px solid #dde8f3; padding: 1em; box-shadow: 2px 2px 6px #e1ecf4; border-radius: 8px; background-color: #f9fbfe;">
+    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px;">
+    <h3 style="margin-top: 0.2em;">DEDL - STACK Client – First Access</h3>
+    <p style="font-size: 0.9em;">Introduction to accessing EO data via the STACK API and client.</p>
+    <p>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:12px; padding:4px 10px; margin:2px; font-size:0.8em;">STACK</span>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:12px; padding:4px 10px; margin:2px; font-size:0.8em;">Access</span>
+    </p>
+    <a href="STACK-Client.ipynb" style="font-weight: bold; font-size: 0.9em; text-decoration: none; color: #1d70b8;">🔗 View Notebook</a>
+  </div>
+
+</div>
+
+
 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
 
 <div style="flex: 1 1 45%; border: 1px solid #ccc; padding: 1em; box-shadow: 2px 2px 5px #ddd;">
@@ -10,7 +38,7 @@
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
 
-  <div style="flex: 1 1 40%; border: 1px solid #dde8f3; padding: 1em; box-shadow: 2px 2px 6px #e1ecf4; border-radius: 8px;">
+  <div style="flex: 1 1 40%; border: 1px solid #94bfe9ff; padding: 1em; box-shadow: 2px 2px 6px #e1ecf4; border-radius: 8px;">
     <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px;">
     <h3 style="margin-top: 0.2em;">DEDL - Hook Tutorial – Data Harvest</h3>
     <p style="font-size: 0.95em;">This notebook demonstrates how to use the Hook service.</p>
