@@ -93,6 +93,6 @@ site:
   logo: ./img/logo_bar.png
   nav:
   - Startseite: index.md
-  - Galerie: production/gallery.md
+  - Galerie: gallery_fragment.html
   static:
    - img
