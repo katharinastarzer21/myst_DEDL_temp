@@ -1,3 +1,28 @@
+<div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+
+  <div style="flex: 1 1 240px; max-width: 280px; border: 1px solid #dde8f3; padding: 0.8em; box-shadow: 1px 1px 4px #e1ecf4; border-radius: 8px; background-color: #f9fbfe;">
+    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 8px;">
+    <h4 style="margin: 0.3em 0;">Hook Tutorial – Data Harvest</h4>
+    <p style="font-size: 0.85em;">Using the Hook service to harvest EO data.</p>
+    <p>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:3px 8px; margin:2px; font-size:0.75em;">Authentication</span>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:3px 8px; margin:2px; font-size:0.75em;">Workflow</span>
+    </p>
+    <a href="Tutorial.ipynb" style="font-weight: bold; font-size: 0.8em; text-decoration: none; color: #1d70b8;">🔗 View Notebook</a>
+  </div>
+
+  <div style="flex: 1 1 240px; max-width: 280px; border: 1px solid #dde8f3; padding: 0.8em; box-shadow: 1px 1px 4px #e1ecf4; border-radius: 8px; background-color: #f9fbfe;">
+    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail" style="width: 100%; height: auto; border-radius: 4px; margin-bottom: 8px;">
+    <h4 style="margin: 0.3em 0;">STACK Client – First Access</h4>
+    <p style="font-size: 0.85em;">How to access EO data via the STACK API.</p>
+    <p>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:3px 8px; margin:2px; font-size:0.75em;">STACK</span>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:3px 8px; margin:2px; font-size:0.75em;">Access</span>
+    </p>
+    <a href="STACK-Client.ipynb" style="font-weight: bold; font-size: 0.8em; text-decoration: none; color: #1d70b8;">🔗 View Notebook</a>
+  </div>
+
+</div>
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
 
