@@ -1,16 +1,15 @@
-<div style="display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 700px;">
 
-  <div style="display: flex; align-items: flex-start; border: 1px solid #dde8f3; border-radius: 8px; padding: 12px; box-shadow: 1px 1px 4px #e1ecf4; background-color: #f9fbfe; max-width: 640px;">
-    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail" style="width: 80px; height: 80px; object-fit: contain; border-radius: 6px; margin-right: 16px;">
-    <div style="flex: 1;">
-      <h4 style="margin: 0 0 6px 0; font-size: 1em;">Hook Tutorial – Data Harvest</h4>
-      <p style="margin: 0 0 8px 0; font-size: 0.85em; color: #333;">Using the Hook service to harvest EO data.</p>
-      <div style="margin-bottom: 8px;">
-        <span style="display: inline-block; background-color: #e6f0fa; border-radius: 10px; padding: 3px 8px; margin: 2px; font-size: 0.75em;">Authentication</span>
-        <span style="display: inline-block; background-color: #e6f0fa; border-radius: 10px; padding: 3px 8px; margin: 2px; font-size: 0.75em;">Workflow</span>
-        <span style="display: inline-block; background-color: #e6f0fa; border-radius: 10px; padding: 3px 8px; margin: 2px; font-size: 0.75em;">Storage</span>
-      </div>
-      <a href="Tutorial.ipynb" style="font-size: 0.8em; color: #1d70b8; font-weight: bold; text-decoration: none;">🔗 View Notebook</a>
+  <div style="display: flex; align-items: center; border: 1px solid #cddff1; border-radius: 6px; padding: 10px 14px; background-color: #f9fbfe; box-shadow: 1px 1px 4px #dfeaf5;">
+    <img src="img/EUMETSAT-logo.png" alt="Notebook Thumbnail"
+         style="width: 50px; height: 50px; object-fit: contain; margin-right: 16px; flex-shrink: 0;">
+    <div style="flex: 1; font-size: 0.85em; line-height: 1.4;">
+      <strong style="font-size: 1em;">Hook Tutorial – Data Harvest</strong><br>
+      <span style="color: #333;">Using the Hook service to harvest EO data.</span><br>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:2px 8px; margin-top:4px; font-size: 0.75em;">Authentication</span>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:2px 8px; margin-top:4px; font-size: 0.75em;">Workflow</span>
+      <span style="display:inline-block; background-color:#e6f0fa; border-radius:10px; padding:2px 8px; margin-top:4px; font-size: 0.75em;">Storage</span><br>
+      <a href="Tutorial.ipynb" style="text-decoration: none; color: #1d70b8; font-weight: bold;">🔗 View Notebook</a>
     </div>
   </div>
 
