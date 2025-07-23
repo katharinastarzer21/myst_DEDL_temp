@@ -2,7 +2,7 @@ version: 1
 project:
   title: DEDL notebook gallery
   toc:
-  - file: index.md
+  - file: index.html
   - title: HDA
     children:
     - file: production/HDA/README.md
@@ -92,7 +92,7 @@ site:
   favicon: ./img/EUMETSAT-icon.ico
   logo: ./img/logo_bar.png
   nav:
-  - Startseite: index.md
+  - Startseite: index.html
   - Galerie: gallery_fragment.html
   static:
    - img
