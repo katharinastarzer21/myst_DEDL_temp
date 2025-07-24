@@ -39,20 +39,14 @@ jobs:
       - name: Generate gallery page with filtering
         run: python scripts/generate_gallery.py
 
-      - name: Build static site with MyST
+      - name: Build main gallery
         run: myst build --html
-
-      - name: Copy static assets (CSS, JS, images)
-        run: |
-          mkdir -p _build/html/static
-          cp -r static/* _build/html/static/ || true
-          cp filter.js _build/html/ || true
-          cp styles.css _build/html/ || true
 
       - name: Prepare deploy folder
         run: |
           mkdir -p full_site
           cp -r _build/html/* full_site/
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
