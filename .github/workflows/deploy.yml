@@ -84,7 +84,7 @@ jobs:
         run: myst build --html
 
       - name: Generate static gallery index.html (standalone homepage)
-        run: python scripts/generate_gallery_html.py > index.html
+        run: python scripts/generate_gallery.py > index.html
 
       - name: Prepare full_site folder
         run: |
