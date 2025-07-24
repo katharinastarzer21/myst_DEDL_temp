@@ -67,6 +67,50 @@ img[src*="EUMETSAT-icon"] {
   background-color: #d6e8fb;
 }
 
+.custom-footer {
+  background-color: #1d2341;
+  color: #fff;
+  font-size: 0.85em;
+  padding: 1.5em;
+  margin-top: 2em;
+  font-family: 'Greycliff CF', sans-serif;
+}
+
+.custom-footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.3em;
+}
+
+.custom-footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.footer-top span {
+  margin-right: 1em;
+  font-weight: bold;
+}
+
+.footer-top img {
+  height: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #3c4260;
+  padding-top: 1em;
+}
+
 
 /* article h1:first-of-type {
   display: none;
