@@ -1,0 +1,64 @@
+name: Build & Deploy Filterable MyST Gallery
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      GALLERY_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Install Python & Node dependencies
+        run: |
+          pip install pyyaml nbformat
+          npm install -g mystmd
+
+      - name: Generate gallery page with filtering
+        run: python scripts/generate_gallery.py
+
+      - name: Build static site with MyST
+        run: myst build --html
+
+      - name: Copy static assets (CSS, JS, images)
+        run: |
+          mkdir -p _build/html/static
+          cp -r static/* _build/html/static/ || true
+          cp filter.js _build/html/ || true
+          cp styles.css _build/html/ || true
+
+      - name: Prepare deploy folder
+        run: |
+          mkdir -p full_site
+          cp -r _build/html/* full_site/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: full_site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        id: deployment

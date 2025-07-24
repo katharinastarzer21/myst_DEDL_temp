@@ -1,9 +1,5 @@
-<!-- FILTER BAR -->
-<div id="filter-bar" style="margin-bottom: 1.5em;">
-  <button onclick="filterNotebooks('all')">All</button>
-  <button onclick="filterNotebooks('Dask')">Dask</button>
-  <button onclick="filterNotebooks('GFM')">GFM</button>
-</div>
+<!-- Include gallery fragment -->
+{% include gallery_fragment.html %}
 
 <!-- NOTEBOOK GALLERY -->
 <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
