@@ -1,6 +1,7 @@
 <!-- footer.md -->
-
 <div style="
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   background-color: #18324C;
   color: white;
   padding: 10px 20px;
@@ -12,7 +13,6 @@
   margin-top: 48px;
   border-top: 1px solid #0f2438;
   flex-wrap: wrap;
-  width: 100%;
   box-sizing: border-box;
 ">
 
