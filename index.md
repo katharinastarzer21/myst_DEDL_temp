@@ -61,13 +61,5 @@
 
 </div>
 
-<script type="text/javascript">
-window.addEventListener('DOMContentLoaded', function () {
-  window.filterNotebooks = function(tag) {
-    document.querySelectorAll('.notebook-card').forEach(card => {
-      const tags = card.dataset.tags || '';
-      card.style.display = (tag === 'all' || tags.includes(tag)) ? 'flex' : 'none';
-    });
-  };
-});
-</script>
+<script src="filter.js"></script>
+
