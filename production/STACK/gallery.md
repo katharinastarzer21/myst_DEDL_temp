@@ -18,7 +18,6 @@
 
 
 
-
 <div style="flex: 1 1 45%; border: 1px solid #ccc; padding: 1em; box-shadow: 2px 2px 5px #ddd;">
   <h3>Data Cube populated with data obtained from Weather and Geophysical Extremes Digital Twin (DT) - ExtremeDT</h3>
   <p>Demonstrates how to use Dask with the DEDL StackService for scalable data processing.</p>

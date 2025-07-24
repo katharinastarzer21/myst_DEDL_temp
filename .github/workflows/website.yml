@@ -1,14 +1,17 @@
 name: Build & Deploy Filterable MyST Gallery
 
 on:
-  push:
-    branches: [main]
+  #push:
+  #  branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: write
   pages: write
   id-token: write
+
+env:
+  BASE_URL: /${{ github.event.repository.name }}
 
 jobs:
   build-and-deploy:
