@@ -84,7 +84,6 @@ project:
 
 site:
   template: book-theme
-  options: null
   style: ./_static/custom.css
   favicon: ./img/EUMETSAT-icon.ico
   logo: ./img/logo_bar.png
