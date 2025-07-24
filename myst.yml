@@ -8,9 +8,7 @@ project:
     - file: production/HDA/gallery.md
       children:
       - file: production/HDA/PySTAC/HDA-PyStac-Client.ipynb
-        tags: [datenanalyse, statistik]
       - file: production/HDA/DestinE_Digital_Twins/ExtremeDT-dataAvailability.ipynb
-        tags: [datenanalyse, statistik]
       - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_EXTREMES.ipynb
       - file: production/HDA/DestinE_Digital_Twins/ClimateDT-ParameterPlotter.ipynb
       - file: production/HDA/DestinE_Digital_Twins/ExtremeDT-ParameterPlotter.ipynb
@@ -90,5 +88,3 @@ site:
   style: ./_static/custom.css
   favicon: ./img/EUMETSAT-icon.ico
   logo: ./img/logo_bar.png
-  static:
-   - img
