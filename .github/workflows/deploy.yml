@@ -83,14 +83,14 @@ jobs:
       - name: Build all notebooks and pages
         run: myst build --html
 
-      - name: Generate static gallery index.html (standalone homepage)
-        run: python scripts/generate_gallery.py > index.html
+    #  - name: Generate static gallery index.html (standalone homepage)
+    #    run: python scripts/generate_gallery.py > index.html
 
       - name: Prepare full_site folder
         run: |
           mkdir -p full_site
           cp -r _build/html/* full_site/
-          cp index.html full_site/index.html
+     #     cp index.html full_site/index.html
 
       - name: Upload deploy artifact
         uses: actions/upload-pages-artifact@v3

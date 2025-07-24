@@ -1,5 +1,3 @@
-<!-- Include gallery fragment -->
-{% include gallery_fragment.html %}
 
 <!-- NOTEBOOK GALLERY -->
 <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
