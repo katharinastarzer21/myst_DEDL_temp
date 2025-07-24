@@ -78,16 +78,19 @@ jobs:
         env:
           COOKBOOK_NAME: ${{ env.ROOT_PATH }}
 
-      - name: Generate Filterable Gallery Page
-        run: python scripts/generate_gallery.py
-
-      - name: Build main gallery
+      - name: Generate filterable gallery fragment
+        run: python scripts/generate_gallery.py  
+      - name: Build all notebooks and pages
         run: myst build --html
 
-      - name: Prepare deploy folder
+      - name: Generate static gallery index.html (standalone homepage)
+        run: python scripts/generate_gallery_html.py > index.html
+
+      - name: Prepare full_site folder
         run: |
           mkdir -p full_site
           cp -r _build/html/* full_site/
+          cp index.html full_site/index.html
 
       - name: Upload deploy artifact
         uses: actions/upload-pages-artifact@v3
