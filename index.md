@@ -1,11 +1,9 @@
-
-<div id="filter-bar" style="margin-bottom: 1.5em;">
+<div id="filter-bar">
   <button onclick="filterNotebooks('all')">All</button>
   <button onclick="filterNotebooks('Dask')">Dask</button>
-  <button onclick="filterNotebooks('Cluster')">Cluster</button>
-  <button onclick="filterNotebooks('Array')">Array</button>
   <button onclick="filterNotebooks('GFM')">GFM</button>
 </div>
+
 
 <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
 
@@ -63,16 +61,13 @@
 
 </div>
 
-<script>
-function filterNotebooks(tag) {
-  const cards = document.querySelectorAll('.notebook-card');
-  cards.forEach(card => {
-    const tags = card.getAttribute('data-tags');
-    if (tag === 'all' || (tags && tags.includes(tag))) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
+<script type="text/javascript">
+window.addEventListener('DOMContentLoaded', function () {
+  window.filterNotebooks = function(tag) {
+    document.querySelectorAll('.notebook-card').forEach(card => {
+      const tags = card.dataset.tags || '';
+      card.style.display = (tag === 'all' || tags.includes(tag)) ? 'flex' : 'none';
+    });
+  };
+});
 </script>
