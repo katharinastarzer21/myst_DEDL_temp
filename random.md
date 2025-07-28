@@ -1,3 +1,31 @@
+# Notebook Gallery
+
+:::{raw} html
+<div class="flex flex-wrap gap-2 mb-6">
+  <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" data-tag="all">Alle</button>
+  <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" data-tag="climate">🌦 Climate</button>
+  <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" data-tag="ml">🤖 ML</button>
+  <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" data-tag="hydro">💧 Hydrology</button>
+</div>
+
+<div id="gallery" class="space-y-4">
+  <div class="p-4 border border-gray-300 rounded shadow-sm" data-tags="climate ml">
+    <strong>Notebook 1:</strong> Climate + ML
+  </div>
+  <div class="p-4 border border-gray-300 rounded shadow-sm" data-tags="ml">
+    <strong>Notebook 2:</strong> Machine Learning
+  </div>
+  <div class="p-4 border border-gray-300 rounded shadow-sm" data-tags="hydro">
+    <strong>Notebook 3:</strong> Hydrology
+  </div>
+  <div class="p-4 border border-gray-300 rounded shadow-sm" data-tags="climate">
+    <strong>Notebook 4:</strong> Climate Only
+  </div>
+</div>
+
+<script src="static/filter.js"></script>
+:::
+
 
 <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
 
