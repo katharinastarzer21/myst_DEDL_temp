@@ -78,8 +78,6 @@ jobs:
         env:
           COOKBOOK_NAME: ${{ env.ROOT_PATH }}
 
-      - name: Generate filterable gallery fragment
-        run: python scripts/generate_gallery.py  
       - name: Build all notebooks and pages
         run: myst build --html
 
@@ -90,7 +88,7 @@ jobs:
         run: |
           mkdir -p full_site
           cp -r _build/html/* full_site/
-     #     cp index.html full_site/index.html
+          cp index.html full_site/index.html
 
       - name: Upload deploy artifact
         uses: actions/upload-pages-artifact@v3
