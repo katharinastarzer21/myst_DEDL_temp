@@ -88,8 +88,8 @@ jobs:
         run: |
           mkdir -p full_site
           cp -r _build/html/* full_site/
-          cp index.html full_site/index.html
-          cp -r gallery full_site/gallery
+        # cp index.html full_site/index.html
+        # cp -r gallery full_site/gallery
 
       - name: Upload deploy artifact
         uses: actions/upload-pages-artifact@v3
