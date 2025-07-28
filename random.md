@@ -1,5 +1,3 @@
-# Notebook Gallery
-
 :::{raw} html
 <div class="flex flex-wrap gap-2 mb-6">
   <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" data-tag="all">Alle</button>
