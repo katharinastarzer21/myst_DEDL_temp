@@ -1,7 +1,7 @@
 <!-- footer.md -->
 <div style="
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  margin-left: calc(-0vw + 0%);
   background-color: #18324C;
   color: white;
   padding: 10px 20px;
