@@ -4,8 +4,10 @@
 ```{card} Card title
 :header: The _Header_
 :footer: Footer
-
 Card content
+
+![EUMETSAT Logo](img/EUMETSAT-logo.png)
+hallo
 ```
 :::
 :::{tab-item} Tab 2
