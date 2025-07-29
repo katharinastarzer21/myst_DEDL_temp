@@ -53,6 +53,12 @@ img[src*="EUMETSAT-icon"] {
     margin-top: 2px;
 }
 
+footer.footer {
+  background-color: #18324C !important;
+  border-top: 1px solid #18324C !important;
+}
+
+
 
 /* article h1:first-of-type {
   display: none;

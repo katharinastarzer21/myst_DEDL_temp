@@ -1,5 +1,5 @@
 <!-- footer.md -->
-<footer style="
+<footer class="footer style="
   flex-shrink: 0;
   background: #04054e;
   color: white;
