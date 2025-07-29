@@ -9,17 +9,9 @@
   gap: 1rem;
 ">
 
-  <!-- Obere Zeile mit Logos -->
-  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-    <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-      <span>Implemented by</span>
-      <img src="img/eumetsat.png" alt="EUMETSAT" style="height: 24px;">
-      <img src="img/mercator.png" alt="Mercator" style="height: 24px;">
-      <img src="img/ecmwf.png" alt="ECMWF" style="height: 24px;">
-      <img src="img/eu-env-agency.png" alt="EEA" style="height: 24px;">
-      <span style="margin-left: 2rem;">Funded by</span>
-      <img src="img/eu-logo.png" alt="EU" style="height: 20px;">
-    </div>
+  <div style="display: flex; align-items: center;">
+    <img src='img/logo_bar.png' alt='DEDL Logo' style="height: 24px; margin-right: 12px;">
+  </div>
 
     <div style="text-align: right;">
       <div style="margin-bottom: 0.25rem;">Get in touch</div>
@@ -30,8 +22,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Untere Zeile mit Text und Links -->
   <div style="border-top: 1px solid #333; padding-top: 0.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
     <div>2025 © All Rights Reserved.</div>
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
