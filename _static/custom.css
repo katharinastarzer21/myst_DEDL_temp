@@ -86,29 +86,8 @@ img[src*="EUMETSAT-icon"] {
   text-decoration: underline;
 }
 
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 1em;
-}
-
-.footer-top span {
-  margin-right: 1em;
-  font-weight: bold;
-}
-
-.footer-top img {
-  height: 30px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-.footer-bottom {
-  text-align: center;
-  border-top: 1px solid #3c4260;
-  padding-top: 1em;
+footer.footer {
+  background-color: #04054e;
 }
 
 
