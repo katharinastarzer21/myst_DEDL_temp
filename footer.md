@@ -12,7 +12,6 @@
   <div style="display: flex; align-items: center;">
     <img src='img/logo_bar.png' alt='DEDL Logo' style="height: 24px; margin-right: 12px;">
   </div>
-
     <div style="text-align: right;">
       <div style="margin-bottom: 0.25rem;">Get in touch</div>
       <div style="display: flex; gap: 1rem;">
