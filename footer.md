@@ -1,10 +1,12 @@
 <!-- footer.md -->
-<div style="
-  width: 100vw;
-  margin-left: calc(-0vw + 0%);
-  background-color: #18324C;
+<footer class="footer" style="
+  flex-shrink: 0;
+  background: #013243;
   color: white;
-  padding: 10px 20px;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,4 +29,4 @@
     <div style="font-size: 0.7em; color: #ffffff88; margin-top: 2px;">&copy; 2025 Destination Earth</div>
   </div>
 
-</div>
+</footer>
