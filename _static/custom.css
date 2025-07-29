@@ -68,7 +68,7 @@ img[src*="EUMETSAT-icon"] {
 }
 
 .custom-footer {
-  background-color: #1d2341;
+  background-color:#18324C !important;
   color: #fff;
   font-size: 0.85em;
   padding: 1.5em;
@@ -87,7 +87,7 @@ img[src*="EUMETSAT-icon"] {
 }
 
 footer.footer {
-  background-color: #04054e;
+  background-color:#18324C !important;
 }
 
 
