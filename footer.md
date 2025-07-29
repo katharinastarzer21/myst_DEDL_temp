@@ -1,7 +1,7 @@
 <!-- footer.md -->
-<footer class="footer" style="
+<footer style="
   flex-shrink: 0;
-  background: #04054eff !important;
+  background: #04054e;
   color: white;
   padding-left: 3.5rem;
   padding-right: 3.5rem;
