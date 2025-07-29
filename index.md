@@ -1,5 +1,5 @@
 ::::{tab-set}
-:::{tab-item} Tab 1
+:::{tab-item} All
 :sync: tab1
 ```{card} Card title
 :header: The _Header_
