@@ -3,6 +3,9 @@ project:
   title: DEDL Notebook Gallery
   toc:
   - file: index.md
+  - title: random
+    children:
+    - file: random.md
   - title: HDA
     children:
     - file: production/HDA/README.md
@@ -91,3 +94,6 @@ site:
     logo: img/logo_bar.png
   parts: 
     footer: footer.md
+
+extensions:
+  - html
