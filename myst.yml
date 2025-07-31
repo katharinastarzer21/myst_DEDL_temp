@@ -6,6 +6,9 @@ project:
   - title: random
     children:
     - file: random.md
+  - title: test
+    children:
+    - file: test.md
   - title: HDA
     children:
     - file: production/HDA/README.md
@@ -95,5 +98,5 @@ site:
   parts: 
     footer: footer.md
 
-extensions:
-  - html
+assets:
+  - filer.js
