@@ -22,9 +22,7 @@
   <div style="text-align: right;">
 
   <a href="https://github.com/dedl-org"
-
   style="color: white; margin-right: 16px; text-decoration: none;">GitHub</a>
-
   <a href="mailto:contact@dedl.eu"
   style="color: white; text-decoration: none;">Contact</a>
   </div>
