@@ -71,6 +71,10 @@ img[src*="EUMETSAT-icon"] {
   font-family: 'Greycliff CF', sans-serif, sans-serif;
   text-align: center;
   line-height: 1.4;
+  flex-shrink: 0;
+  color: white;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem
 }
 
 .dedl-footer a {
@@ -88,7 +92,7 @@ img[src*="EUMETSAT-icon"] {
 }
 
 .footer-divider {
-  border-top: 1px solid #333;
+  border-top: 1px solid white;
   margin: 0.5rem 0;
 }
 
