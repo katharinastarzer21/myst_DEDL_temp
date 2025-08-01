@@ -73,6 +73,7 @@ img[src*="EUMETSAT-icon"] {
   line-height: 1.4;
   margin-top: auto;
   box-sizing: border-box;
+  margin-bottom: 0;
 }
 
 .footer-content {
@@ -84,6 +85,7 @@ img[src*="EUMETSAT-icon"] {
 
 .footer-logo {
   height: 20px;
+  margin-left: 10px;
 }
 
 .footer-mail {
