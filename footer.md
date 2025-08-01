@@ -14,14 +14,12 @@
 
 ::::{div}
 
-# Landing Pages
-
-```{image} https://jupyterbook.org/en/stable/_images/logo-square.svg
+```{image} img/logo_bar.png
 :width: 50px
 :align: left
 ```
 
-This is a description of our project. And a [link to its homepage](https://github.com/jupyter-book/example-landing-pages).
+Destination Earth Data Lake Laboratory. <a href="https://destination-earth.eu/" style="color: white; text-decoration: underline;"></a>.
 ::::
 
 <!-- Spacer between project description and links columns -->
@@ -46,13 +44,8 @@ This is a description of our project. And a [link to its homepage](https://githu
 
 :::{div}
 
-- A second column!
-- With multiple entries
-  :::
-
-:::{div}
-
-- And what about a third
+- About
+- Github
   :::
 
 ::::
