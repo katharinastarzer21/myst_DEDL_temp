@@ -1,11 +1,15 @@
-<footer class = "footer" style="
-  background-color: #18324C;
-  padding: 0.5rem 2.5rem;
+<div style="
+  width: 100vw;
+  margin: 0;
+  background-color: #1B1F3B;
+  color: white;
+  padding: 1rem 3.5rem;
   font-family: 'Greycliff CF', sans-serif;
   font-size: 0.75em;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  box-sizing: border-box;
 ">
 
   <div style="text-align: right; color: white important!">
