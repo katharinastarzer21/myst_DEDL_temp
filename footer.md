@@ -1,6 +1,6 @@
 <footer class = "footer" style="
-  background-color: #1B1F3B;
-  padding: 1.5rem 2.5rem;
+  background-color: #18324C;
+  padding: 0.5rem 2.5rem;
   font-family: 'Greycliff CF', sans-serif;
   font-size: 0.75em;
   display: flex;
@@ -16,7 +16,7 @@
   </div>
 
   <div style="display: flex; align-items: center;">
-    <img src='img/logo_bar.png' alt='DEDL Logo' style="height: 24px; margin-right: 12px;">
+    <img src='img/logo_bar.png' alt='DEDL Logo' style="height: 18px; margin-right: 12px;">
   </div>
 
   <div style="
