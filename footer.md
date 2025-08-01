@@ -8,7 +8,7 @@
   gap: 1rem;
 ">
 
-  <div style="text-align: right; color: white">
+  <div style="text-align: right; color: white important!">
     <div style="margin-bottom: 0.25rem;">Get in touch</div>
     <a href="mailto:info@example.com" style="color: white; text-decoration: underline;">
       info@example.com
@@ -26,11 +26,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    color: white,
+    color: white !important,
   ">
     <div>2025 © All Rights Reserved.</div>
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-      <a href="#" style="color: white; text-decoration: none;">About us</a> |
+      <a href="#" style="color: white !important; text-decoration: none;">About us</a> |
     </div>
   </div>
 </footer>
