@@ -9,14 +9,14 @@
   gap: 1rem;
 ">
 
-  <div style="text-align: right;">
+  <div style="text-align: right; color: white;">
     <div style="margin-bottom: 0.25rem;">Get in touch</div>
     <a href="mailto:info@example.com" style="color: white !important; text-decoration: underline;">
       info@example.com
     </a>
   </div>
 
-  <div style="display: flex; align-items: center;">
+  <div style="display: flex; align-items: center;color: white;">
     <img src='img/logo_bar.png' alt='DEDL Logo' style="height: 24px; margin-right: 12px;">
   </div>
 
@@ -27,7 +27,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    color: white;  /* 👈 HIER hinzufügen */
+    color: white;
   ">
     <div>2025 © All Rights Reserved.</div>
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
