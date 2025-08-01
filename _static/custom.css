@@ -62,33 +62,33 @@ img[src*="EUMETSAT-icon"] {
   font-size: 0.75em;
 }
 
-
 .dedl-footer {
-  background-color: #1B1F3B;
+  position: relative;              /* nicht fixed, aber immer am Ende */
+  width: 100vw;                    /* über gesamte Viewport-Breite */
+  background-color: #18324C;
   color: white;
   padding: 0.75rem 2rem;
+  font-family: 'Greycliff CF', sans-serif;
   font-size: 0.75em;
-  font-family: 'Greycliff CF', sans-serif, sans-serif;
-  text-align: center;
   line-height: 1.4;
-  flex-shrink: 0;
-  color: white;
-  padding-left: 3.5rem;
-  padding-right: 3.5rem
+  margin-top: auto;
+  box-sizing: border-box;
 }
 
-.dedl-footer a {
-  color: white !important;
-  text-decoration: none;
-}
-
-.footer-mail {
-  text-decoration: underline;
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .footer-logo {
   height: 20px;
-  margin: 0.5rem 0;
+}
+
+.footer-mail {
+  color: white !important;
+  text-decoration: underline;
 }
 
 .footer-divider {
@@ -98,12 +98,15 @@ img[src*="EUMETSAT-icon"] {
 
 .footer-bottom {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .footer-links a {
+  color: white !important;
+  text-decoration: none;
   margin: 0 0.25rem;
 }
 
