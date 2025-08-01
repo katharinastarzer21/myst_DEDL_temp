@@ -7,7 +7,6 @@
   flex-direction: column;
   row-gap: 0.25rem;
   box-sizing: border-box;
-  color: white !important;
 ">
 
   <div style="display: flex; justify-content: space-between; align-items: center;">
