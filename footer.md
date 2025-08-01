@@ -1,4 +1,4 @@
-<footer style="
+<footer class = "footer" style="
   background-color: #1B1F3B;
   padding: 1.5rem 2.5rem;
   font-family: 'Greycliff CF', sans-serif;
