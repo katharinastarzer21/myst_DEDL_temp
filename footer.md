@@ -19,7 +19,7 @@
 :align: left
 ```
 
-Destination Earth Data Lake Laboratory. <a href="https://destination-earth.eu/" style="color: white; text-decoration: underline;"></a>.
+Destination Earth Data Lake Laboratory. <a href="https://destination-earth.eu/" style="color: white; text-decoration: underline;"></a>
 ::::
 
 <!-- Spacer between project description and links columns -->

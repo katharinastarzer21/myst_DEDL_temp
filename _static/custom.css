@@ -81,6 +81,10 @@ img[src*="EUMETSAT-icon"] {
       list-style: none;
     }
   }
+  .footer a {
+  color: white !important;
+  text-decoration: none;
+}
 } 
 /* article h1:first-of-type {
   display: none;
