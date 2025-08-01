@@ -1,40 +1,35 @@
-<div style="
-  width: 100vw;
-  margin: 0;
-  background-color: #1B1F3B;
-  color: white;
-  padding: 1rem 3.5rem;
+<footer style="
+  background-color: #18324C;
+  padding: 0.25rem 1rem;
   font-family: 'Greycliff CF', sans-serif;
   font-size: 0.75em;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  row-gap: 0.25rem;
   box-sizing: border-box;
+  color: white !important;
 ">
 
-  <div style="text-align: right; color: white important!">
-    <div style="margin-bottom: 0.25rem;">Get in touch</div>
-    <a href="mailto:info@example.com" style="color: white; text-decoration: underline;">
-      info@example.com
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <img src="img/logo_bar.png" alt="DEDL Logo" style="height: 18px;">
+    <a href="mailto:info@example.com" style="color: white !important; text-decoration: underline;">
+      Get in touch
     </a>
   </div>
 
-  <div style="display: flex; align-items: center;">
-    <img src='img/logo_bar.png' alt='DEDL Logo' style="height: 18px; margin-right: 12px;">
-  </div>
-
   <div style="
-    border-top: 1px solid #333;
-    padding-top: 0.5rem;
+    border-top: 1px solid #444;
+    padding-top: 0.25rem;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    color: white !important,
+    font-size: 0.7em;
+    color: white !important;
   ">
-    <div>2025 © All Rights Reserved.</div>
-    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-      <a href="#" style="color: white !important; text-decoration: none;">About us</a> |
+    <div style="color: white !important;">2025 © All Rights Reserved.</div>
+    <div>
+      <a href="#" style="color: white !important; text-decoration: none;">About us</a>
     </div>
   </div>
+
 </footer>
