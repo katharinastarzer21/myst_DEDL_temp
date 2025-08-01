@@ -1,6 +1,5 @@
 <footer style="
   background-color: #1B1F3B;
-  color: white;
   padding: 1.5rem 2.5rem;
   font-family: 'Greycliff CF', sans-serif;
   font-size: 0.75em;
