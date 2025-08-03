@@ -15,7 +15,7 @@
 ::::{div}
 
 ```{image} img/logo_bar.png
-:width: 1000px
+:width: 10000px
 :align: left
 ```
 
