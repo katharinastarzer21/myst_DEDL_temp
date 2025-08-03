@@ -15,11 +15,11 @@
 ::::{div}
 
 ```{image} img/logo_bar.png
-:width: 100px
+:width: 1000px
 :align: left
 ```
 
-Destination Earth Data Lake Laboratory. <a href="https://destination-earth.eu/" style="color: white; text-decoration: underline;"></a>
+Destination Earth Data Lake Laboratory
 ::::
 
 <!-- Spacer between project description and links columns -->
@@ -32,13 +32,6 @@ Destination Earth Data Lake Laboratory. <a href="https://destination-earth.eu/" 
 % and fan out into three columns on wide screens. However, it always remains within
 % its parent grid column.
 ::::{grid} 1 1 3 3
-
-:::{div .footer"}
-
-- [About](https://mystmd.org/overview/ecosystem)
-- [Guide](https://mystmd.org/guide)
-- [Sandbox](https://mystmd.org/sandbox)
-  :::
 
 :::{div}
 
