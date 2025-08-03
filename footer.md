@@ -15,7 +15,7 @@
 ::::{div}
 
 ```{image} img/logo_bar.png
-:width: 50px
+:width: 100px
 :align: left
 ```
 
@@ -27,15 +27,13 @@ Destination Earth Data Lake Laboratory. <a href="https://destination-earth.eu/" 
 ::::{div}
 ::::
 
-<!-- Link columns -->
-
 % This a _second_ grid embedded within the first one, to create nicer
 % responsive design experience. This grid will have a single column on narrow screens,
 % and fan out into three columns on wide screens. However, it always remains within
 % its parent grid column.
 ::::{grid} 1 1 3 3
 
-:::{div}
+:::{div .footer"}
 
 - [About](https://mystmd.org/overview/ecosystem)
 - [Guide](https://mystmd.org/guide)
