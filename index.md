@@ -14,14 +14,6 @@ Card content
 hallo
 ```
 -->
-<p><a href="roles.md">MyST Role Spec</a></p>
-<a href="#" onclick="
-  Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
-    card.style.display = card.dataset.tags.includes('HDA') ? 'block' : 'none';
-  });
-  return false;
-">Nur HDA anzeigen</a>
-
 
 
 <img style="float:left; width:5%" src="./img/EUMETSAT-icon.png"/>  
@@ -47,6 +39,12 @@ Further information available in DestinE Data Lake documentation: https://destin
 
 <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
 
+<a href="#" onclick="
+  Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
+    card.style.display = card.dataset.tags.includes('HDA') ? 'block' : 'none';
+  });
+  return false;
+">Nur HDA anzeigen</a>
 
 <!-- HDA Tutorial -->
 
