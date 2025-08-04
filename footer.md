@@ -20,7 +20,6 @@ Destination Earth Data Lake Laboratory
 
 - [About](https://destination-earth.eu/)
 - [Github](https://github.com/destination-earth)
-- [STAC Report](https://katharinastarzer21.github.io/dein-repo/stac_report.html)
 
 :::
 
