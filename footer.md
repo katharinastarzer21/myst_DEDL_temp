@@ -23,23 +23,23 @@ Destination Earth Data Lake Laboratory
 ::::
 
 <!-- Spacer between project description and links columns -->
-
 ::::{div .footer}
 
 ::::{grid} 2 2 4
 
 :::{div}
-
-::
+<!-- Erste Spalte leer -->
+:::
 
 :::{div}
+<!-- Zweite Spalte leer -->
+:::
 
-::
 :::{div}
-
 - [About](https://destination-earth.eu/)
 - [Github](https://github.com/destination-earth)
+:::
 
 ::::
 
-:::::
+::::
