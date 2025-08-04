@@ -1,5 +1,90 @@
 # DEDL Notebook Gallery
 
+<head>
+  <meta charset="UTF-8">
+  <title>Notebook Card Filter Test</title>
+  <style>
+    .notebook-card {
+      display: flex;
+      align-items: flex-start;
+      border: 1px solid #cddff1;
+      border-radius: 6px;
+      padding: 14px 20px;
+      background-color: #f9fbfe;
+      box-shadow: 1px 1px 4px #dfeaf5;
+      margin-bottom: 20px;
+    }
+    .notebook-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-right: 16px;
+    }
+    .tag {
+      background: #e0eaf5;
+      padding: 2px 6px;
+      margin-right: 5px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    button {
+      margin: 4px;
+      padding: 6px 12px;
+      border: none;
+      background-color: #1d70b8;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Notebook Filter Test</h2>
+
+<!-- Buttons with inline JavaScript -->
+<p>
+  <button onclick="
+    Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
+      card.style.display = card.dataset.tags.includes('HDA') ? 'flex' : 'none';
+    });
+  ">Show only HDA</button>
+
+  <button onclick="
+    Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
+      card.style.display = card.dataset.tags.includes('DataCube') ? 'flex' : 'none';
+    });
+  ">Show only DataCube</button>
+
+  <button onclick="
+    Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
+      card.style.display = 'flex';
+    });
+  ">Show all</button>
+</p>
+
+<!-- Notebook Cards -->
+<div class="notebook-card" data-tags="HDA STAC">
+  <img src="https://placekitten.com/80/80" alt="HDA">
+  <div>
+    <strong>HDA Tutorial</strong><br>
+    Harmonised Data Access intro notebook.<br>
+    <span class="tag">HDA</span><span class="tag">STAC</span>
+  </div>
+</div>
+
+<div class="notebook-card" data-tags="DataCube DigitalTwin">
+  <img src="https://placebear.com/80/80" alt="DataCube">
+  <div>
+    <strong>DataCube Example</strong><br>
+    A notebook for Digital Twin workflows.<br>
+    <span class="tag">DataCube</span><span class="tag">DigitalTwin</span>
+  </div>
+</div>
+
+</body>
+
+
 ::::{tab-set}
 :::{tab-item} Introduction
 :sync: tab1
@@ -15,6 +100,7 @@ hallo
 ```
 -->
 <p><a href="roles.md">MyST Role Spec</a></p>
+<p><a href="#" onclick="filterCards('HDA')">MyST Role Spec</a></p>
 
 
 <img style="float:left; width:5%" src="./img/EUMETSAT-icon.png"/>  
