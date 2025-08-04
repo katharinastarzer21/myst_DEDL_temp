@@ -3,12 +3,6 @@ project:
   title: DEDL Notebook Gallery
   toc:
   - file: index.md
-  - title: random
-    children:
-    - file: random.md
-  - title: test
-    children:
-    - file: test.md
   - title: HDA
     children:
     - file: production/HDA/README.md
@@ -49,48 +43,11 @@ project:
       - file: production/STACK/ExtremeDT-DataCube.ipynb
       - file: production/STACK/ExtremeDT-DataCube-xViewer.ipynb
       - file: production/STACK/DEDL_StackService_Dask.ipynb
-  - title: Notebook Gallery
-    children:
-    - title: Dask
-      children:
-      - file: production/STACK/STACK-Python-Client-Dask.ipynb
-      - file: production/STACK/STACK-Dask-101.ipynb
-      - file: production/STACK/DEDL_StackService_Dask.ipynb
-    - title: Authentification
-      children:
-      - file: production/HOOK/Tutorial.ipynb
-      - file: production/HOOK/DEDL-Hook_access.ipynb
-      - file: production/HDA/PySTAC/HDA-PyStac-Client.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_CLIMATE-Series.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_EXTREMES-Series.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_CLIMATE.ipynb
-      - file: production/HDA/REST/HDA-REST-Queryables.ipynb
-    - title: Digital Twin
-      children:
-      - file: production/STACK/ExtremeDT-DataCube.ipynb
-      - file: production/STACK/ExtremeDT-DataCube-xViewer.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/ExtremeDT-dataAvailability.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/ExtremeDT-dataAvailability.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_EXTREMES.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/ClimateDT-ParameterPlotter.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/ExtremeDT-ParameterPlotter.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_CLIMATE-Series.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_EXTREMES-Series.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_CLIMATE.ipynb
-      - file: production/HDA/REST/HDA-REST-Queryables.ipynb
-    - title: ECMWF
-      children:
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_EXTREMES.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/ClimateDT-ParameterPlotter.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/ExtremeDT-ParameterPlotter.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_CLIMATE-Series.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_EXTREMES-Series.ipynb
-      - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_CLIMATE.ipynb
-      - file: production/HDA/CDS_data/DEDL-HDA-EO.ECMWF.DAT.REANALYSIS_ERA5_SINGLE_LEVELS.ipynb
-      - file: production/HDA/EODAG/HDA-EODAG-quick-start.ipynb
-
+ 
 site:
   template: book-theme
+  hide_toc: true
+  hide_footer_links: true
   options:
     style: _static/custom.css
     favicon: img/EUMETSAT-icon.ico
