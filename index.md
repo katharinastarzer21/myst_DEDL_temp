@@ -37,16 +37,10 @@ Further information available in DestinE Data Lake documentation: https://destin
 :::{tab-item} Overview
 :sync: tab2
 
+
+<p><a href="roles.md">MyST Role Spec</a></p>
+
 <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
-
-<button onclick="
-  Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
-    card.style.display = card.dataset.tags.includes('HDA') ? 'block' : 'none';
-  });
-">
-  Nur HDA anzeigen
-</button>
-
 
 <!-- HDA Tutorial -->
 
