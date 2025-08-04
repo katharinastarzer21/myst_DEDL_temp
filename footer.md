@@ -1,28 +1,44 @@
-::::{div .footer}
+:::::{grid} 3 3 5 5
 
-::::{grid} 3 3 6
-:class: outer-grid
+:class: outer-grid col-screen
 
-:::{div}
+
+::::{div}
+
+  
+
 ```{image} img/logo_bar.png
-:width: 200000px
+
+:width: 100000px
+
 :align: left
+
 ```
 
 Destination Earth Data Lake Laboratory
-:::
+
+::::
+
+::::{div .footer}
+::::{grid} 2 2 4
+
 
 :::{div}
-<!-- Leerspalte -->
+
 :::
 
-:::{div style="text-align: right"}
+
+:::{div}
+
+:::
+
+
+:::{div}
 
 - [About](https://destination-earth.eu/)
 - [Github](https://github.com/destination-earth)
 
 :::
-
 ::::
 
 ::::
