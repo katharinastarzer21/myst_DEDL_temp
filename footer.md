@@ -1,23 +1,19 @@
 :::::{grid} 3 3 5 5
-
 :class: outer-grid col-screen
 
+<!-- Project description -->
 
 ::::{div}
 
-  
-
-```{image} img/logo_bar.png
-
-:width: 100000px
-
+{image} img/logo_bar.png
+:width: 10000px
 :align: left
 
-```
+
 
 Destination Earth Data Lake Laboratory
-
 ::::
+
 
 ::::{div .footer}
 
