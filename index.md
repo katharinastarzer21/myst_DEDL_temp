@@ -14,6 +14,32 @@ Card content
 hallo
 ```
 -->
+<div style="margin-bottom: 20px;">
+  <strong>Filter by Tag:</strong><br>
+  <button onclick="filterCards('all')">Show All</button>
+  <button onclick="filterCards('HDA')">HDA</button>
+  <button onclick="filterCards('STAC')">STAC</button>
+  <button onclick="filterCards('Core API')">Core API</button>
+  <button onclick="filterCards('DataCube')">DataCube</button>
+  <button onclick="filterCards('Digital Twin')">Digital Twin</button>
+</div>
+
+
+<!-- Filter Script -->
+<script>
+function filterCards(tag) {
+  const cards = document.querySelectorAll('.notebook-card');
+  cards.forEach(card => {
+    const tags = card.getAttribute('data-tags');
+    if (tag === 'all' || tags.includes(tag)) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
 
 <img style="float:left; width:5%" src="./img/EUMETSAT-icon.png"/>  
 <br>
