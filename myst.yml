@@ -54,6 +54,9 @@ site:
     logo: img/logo_bar.png
   parts: 
     footer: footer.md
+  plugins:
+  - type: javascript
+    path: filter.mjs
 
 assets:
   - filer.js
