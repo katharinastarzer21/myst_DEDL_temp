@@ -46,6 +46,15 @@ Further information available in DestinE Data Lake documentation: https://destin
 <div class="notebook-card" data-tags="HDA Core API" style="display: flex;">Notebook 1: HDA</div>
 <div class="notebook-card" data-tags="DataCube" style="display: flex;">Notebook 2: DataCube</div>
 
+<button onclick="
+  Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
+    card.style.display = card.dataset.tags.includes('HDA') ? 'block' : 'none';
+  });
+">
+  Nur HDA anzeigen
+</button>
+
+
 
 <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
 
