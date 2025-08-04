@@ -1,43 +1,27 @@
-% This defines the footer of the site, and is not parsed as a regular "page"
-% We point to it with the following in `myst.yml`:
-% site:
-% parts:
-% footer: footer.md
+::::{div .footer}
 
-% Here we use `grid` to add a basic grid structure to the HTML,
-% but the formatting column sizes are defined manually in css/footer.css
-% see the `grid-template-columns` line.
-:::::{grid} 3 3 5 5
-:class: outer-grid col-screen
+::::{grid} 3 3 6
+:class: outer-grid
 
-<!-- Project description -->
-
-::::{div}
-
+:::{div}
 ```{image} img/logo_bar.png
-:width: 100000px
+:width: 200000px
 :align: left
 ```
 
 Destination Earth Data Lake Laboratory
-::::
-
-<!-- Spacer between project description and links columns -->
-::::{div .footer}
-
-::::{grid} 2 2 4
-
-:::{div}
-<!-- Erste Spalte leer -->
 :::
 
 :::{div}
-<!-- Zweite Spalte leer -->
+<!-- Leerspalte -->
 :::
 
-:::{div}
+:::{div style="text-align: right"}
+
 - [About](https://destination-earth.eu/)
 - [Github](https://github.com/destination-earth)
+- [STAC Report](https://katharinastarzer21.github.io/dein-repo/stac_report.html)
+
 :::
 
 ::::
