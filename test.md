@@ -1,11 +1,5 @@
 # Notebook Gallery
 
-<head>
-  <meta charset="UTF-8">
-  <title>Notebook-Filter</title>
-</head>
-<body>
-
 <a href="#" onclick="event.preventDefault(); Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
   const tags = card.dataset.tags || '';
   card.style.display = tags.includes('HDA') ? 'flex' : 'none';
@@ -25,5 +19,3 @@
 <div class="notebook-card" data-tags="DataCube" style="display: flex;">
   📗 Notebook 2 – DataCube
 </div>
-
-</body>
