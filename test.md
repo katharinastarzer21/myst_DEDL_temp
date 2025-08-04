@@ -1,24 +1,29 @@
 # Notebook Gallery
 
-<div id="tag-filter-controls"></div>
+<head>
+  <meta charset="UTF-8">
+  <title>Notebook-Filter</title>
+</head>
+<body>
 
-<div class="notebook-card" data-tags="DataCube DigitalTwin">
-  <strong>Notebook 1</strong><br>
-  Tags: DataCube, Digital Twin<br>
-  <a href="#">View Notebook</a>
+<a href="#" onclick="event.preventDefault(); Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
+  const tags = card.dataset.tags || '';
+  card.style.display = tags.includes('HDA') ? 'flex' : 'none';
+});">Nur HDA anzeigen</a>
+
+&nbsp;|&nbsp;
+
+<a href="#" onclick="event.preventDefault(); Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
+  card.style.display = 'flex';
+});">Alle anzeigen</a>
+
+<hr>
+
+<div class="notebook-card" data-tags="HDA Core API" style="display: flex;">
+  📘 Notebook 1 – HDA
+</div>
+<div class="notebook-card" data-tags="DataCube" style="display: flex;">
+  📗 Notebook 2 – DataCube
 </div>
 
-<div class="notebook-card" data-tags="STAC HDA">
-  <strong>Notebook 2</strong><br>
-  Tags: STAC, HDA<br>
-  <a href="#">View Notebook</a>
-</div>
-
-<div class="notebook-card" data-tags="HDA CoreAPI">
-  <strong>Notebook 3</strong><br>
-  Tags: HDA, Core API<br>
-  <a href="#">View Notebook</a>
-</div>
-
-<!-- This links your JS code that runs in browser -->
-<script src="filer.js"></script>
+</body>

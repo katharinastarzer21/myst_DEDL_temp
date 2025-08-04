@@ -46,13 +46,26 @@ Further information available in DestinE Data Lake documentation: https://destin
 <div class="notebook-card" data-tags="HDA Core API" style="display: flex;">Notebook 1: HDA</div>
 <div class="notebook-card" data-tags="DataCube" style="display: flex;">Notebook 2: DataCube</div>
 
-<a href="#" onclick="
-  event.preventDefault();
-  Array.from(document.querySelectorAll('.notebook-card')).forEach(card => {
-    const tags = card.dataset.tags || '';
-    card.style.display = tags.includes('HDA') ? 'flex' : 'none';
-  });
-">Nur HDA anzeigen</a>
+
+<a href="#" onclick="event.preventDefault(); Array.from(document.querySelectorAll('.notebook-card')).forEach(card => { const tags = card.dataset.tags || ''; card.style.display = tags.includes('HDA') ? 'flex' : 'none'; });">Nur HDA anzeigen</a>
+
+
+
+<p><a href="#" onclick="filterCards('HDA'); return false;">Nur HDA anzeigen</a></p>
+<p><a href="#" onclick="filterCards('all'); return false;">Alle anzeigen</a></p>
+
+<div class="notebook-card" data-tags="HDA STAC">Notebook A (HDA)</div>
+<div class="notebook-card" data-tags="DataCube">Notebook B (DataCube)</div>
+
+<script>
+  function filterCards(tag) {
+    const cards = document.querySelectorAll('.notebook-card');
+    cards.forEach(card => {
+      const tags = card.dataset.tags || "";
+      card.style.display = (tag === 'all' || tags.includes(tag)) ? 'block' : 'none';
+    });
+  }
+</script>
 
 
 
