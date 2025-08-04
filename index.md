@@ -54,8 +54,25 @@ Further information available in DestinE Data Lake documentation: https://destin
 <p><a href="#" onclick="filterCards('HDA'); return false;">Nur HDA anzeigen</a></p>
 <p><a href="#" onclick="filterCards('all'); return false;">Alle anzeigen</a></p>
 
-<div class="notebook-card" data-tags="HDA STAC">Notebook A (HDA)</div>
+ <div style="width: 100px; height: 100px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background-color: #fff; border: 1px solid #e0eaf5; border-radius: 6px; overflow: hidden; margin-right: 32px;">
+ <a href="production/HDA/REST/HDA-REST-full-version.ipynb" style="text-decoration: none; color: #1d70b8; font-weight: bold;">View Notebook</a>
 <div class="notebook-card" data-tags="DataCube">Notebook B (DataCube)</div>
+
+
+<p>
+  <button data-filter-tag="HDA">Nur HDA</button>
+  <button data-filter-tag="Core API">Nur Core API</button>
+  <button data-filter-tag="all">Alle</button>
+</p>
+
+<div class="card" data-tags="HDA,Core API" style="display: flex;">
+  Notebook 1
+</div>
+
+<div class="card" data-tags="DataCube" style="display: flex;">
+  Notebook 2
+</div>
+
 
 <script>
   function filterCards(tag) {
