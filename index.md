@@ -54,6 +54,10 @@ Further information available in DestinE Data Lake documentation: https://destin
 <p><a href="#" onclick="filterCards('HDA'); return false;">Nur HDA anzeigen</a></p>
 <p><a href="#" onclick="filterCards('all'); return false;">Alle anzeigen</a></p>
 
+<a href="#" data-filter-tag="HDA">Nur HDA anzeigen</a>
+<a href="#" data-filter-tag="all">Alle anzeigen</a>
+
+
 <p>
   <button data-filter-tag="HDA">Nur HDA</button>
   <button data-filter-tag="Core API">Nur Core API</button>
