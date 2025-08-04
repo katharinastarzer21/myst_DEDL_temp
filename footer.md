@@ -27,6 +27,14 @@ Destination Earth Data Lake Laboratory
 ::::{div .footer}
 
 ::::{grid} 2 2 4
+
+:::{div}
+
+::
+
+:::{div}
+
+::
 :::{div}
 
 - [About](https://destination-earth.eu/)
