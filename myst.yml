@@ -54,6 +54,11 @@ site:
     logo: img/logo_bar.png
   parts: 
     footer: footer.md
+  html_theme_options:
+    launch_buttons:  
+      binderhub_url: "https://mybinder.org"
+      gitlab_url: "https://gitlab.com/my-org/my-repo"
+      notebook_interface: "jupyterlab"
 
 assets:
   - filer.js
