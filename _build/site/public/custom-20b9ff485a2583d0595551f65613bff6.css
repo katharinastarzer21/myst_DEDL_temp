@@ -58,14 +58,6 @@ footer.footer {
   border-top: 1px solid #18324C !important;
 }
 
-.footer a,
-.footer a:visited,
-.footer a:hover,
-.footer a:active {
-  color: #DFEDFF !important;
-  text-decoration: none;
-}
-
 .tag {
   display: inline-block;
   background-color: #e6f0fa;
