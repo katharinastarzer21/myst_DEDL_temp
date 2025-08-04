@@ -15,7 +15,7 @@
 ::::{div}
 
 ```{image} img/logo_bar.png
-:width: 10000px
+:width: 100000px
 :align: left
 ```
 
@@ -26,12 +26,11 @@ Destination Earth Data Lake Laboratory
 
 ::::{div .footer}
 
-::::{grid} 1 1 3 3
+::::{grid} 2 2 4
 :::{div}
 
 - [About](https://destination-earth.eu/)
 - [Github](https://github.com/destination-earth)
-::
 
 ::::
 
