@@ -46,23 +46,12 @@ Further information available in DestinE Data Lake documentation: https://destin
 <div class="notebook-card" data-tags="HDA Core API" style="display: flex;">Notebook 1: HDA</div>
 <div class="notebook-card" data-tags="DataCube" style="display: flex;">Notebook 2: DataCube</div>
 
-
 <a href="#" onclick="event.preventDefault(); Array.from(document.querySelectorAll('.notebook-card')).forEach(card => { const tags = card.dataset.tags || ''; card.style.display = tags.includes('HDA') ? 'flex' : 'none'; });">Nur HDA anzeigen</a>
-
 
 
 <p><a href="#" onclick="filterCards('HDA'); return false;">Nur HDA anzeigen</a></p>
 <p><a href="#" onclick="filterCards('all'); return false;">Alle anzeigen</a></p>
 
-<a href="#" data-filter-tag="HDA">Nur HDA anzeigen</a>
-<a href="#" data-filter-tag="all">Alle anzeigen</a>
-
-
-<p>
-  <button data-filter-tag="HDA">Nur HDA</button>
-  <button data-filter-tag="Core API">Nur Core API</button>
-  <button data-filter-tag="all">Alle</button>
-</p>
 
 <div class="card" data-tags="HDA,Core API" style="display: flex;">
   Notebook 1
