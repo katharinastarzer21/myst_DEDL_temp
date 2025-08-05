@@ -38,6 +38,9 @@ Further information available in DestinE Data Lake documentation: https://destin
 :sync: tab2
 
 ## Notebook Filter
+:::{raw} html
+<div class="filter-button" data-filter-tag="all">All</div>
+:::
 
 <!-- Buttons -->
 <div id="filter-buttons">
