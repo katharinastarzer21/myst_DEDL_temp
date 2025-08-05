@@ -11,14 +11,18 @@ export default {
       card.style.display = (tag === 'all' || tags.includes(tag)) ? 'flex' : 'none';
     });
 
-    document.querySelectorAll('.filter-button').forEach(btn =>
+    document.querySelectorAll('[data-filter-tag]').forEach(btn =>
       btn.classList.toggle('active', btn === el)
     );
   }
 };
 
+// Event-Listener aktivieren
 document.addEventListener('DOMContentLoaded', () => {
-  document
-    .getElementById('filter-buttons')
-    ?.addEventListener('click', e => import('./filter.js').then(mod => mod.default.onClick(e)));
+  const container = document.getElementById('filter-buttons');
+  if (container) {
+    container.addEventListener('click', e =>
+      import('./filter.js').then(mod => mod.default.onClick(e))
+    );
+  }
 });
