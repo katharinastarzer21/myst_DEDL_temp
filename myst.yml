@@ -5,7 +5,7 @@ project:
   - type: javascript
     path: static/filter.mjs
   toc:
-  - file: test.html
+  - file: index.md
   - title: HDA
   - file: production/HDA/gallery.md
     children:
