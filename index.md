@@ -41,6 +41,7 @@ Further information available in DestinE Data Lake documentation: https://destin
 ```{raw} html
 <div class="filter-button" data-filter-tag="all">All</div>
 ```
+<p><a onclick="window.alert('hallo')">MyST Role Spec</a></p>
 
 <!-- Buttons -->
 <div id="filter-buttons">
