@@ -10,7 +10,7 @@ project:
   - file: production/HDA/gallery.md
     children:
     # - file: production/HDA/README.md
-    - file: production/HDA/PySTAC/HDA-PyStac-Client.ipynb
+    - hidden: production/HDA/PySTAC/HDA-PyStac-Client.ipynb
     - file: production/HDA/DestinE_Digital_Twins/ExtremeDT-dataAvailability.ipynb
     - file: production/HDA/DestinE_Digital_Twins/DEDL-HDA-EO.ECMWF.DAT.DT_EXTREMES.ipynb
     - file: production/HDA/DestinE_Digital_Twins/ClimateDT-ParameterPlotter.ipynb
@@ -25,7 +25,7 @@ project:
     - file: production/HDA/EUM_data/DEDL-HDA-EO.EUM.DAT.SENTINEL-3.OL_1_ERR___.ipynb
     - file: production/HDA/Fresh_Data_Pool/DEDL-HDA-EO.ESA.DAT.SENTINEL-1.L1_GRD.ipynb
     - file: production/HDA/Fresh_Data_Pool/DEDL-HDA-EO.ESA.DAT.SENTINEL-2.MSI.L2A.ipynb
-    - file: production/HDA/REST/HDA-REST-full-version.ipynb
+    - includehidden: production/HDA/REST/HDA-REST-full-version.ipynb
     - file: production/HDA/REST/HDA-REST-Queryables.ipynb
     - file: production/HDA/REST/HDA-REST-quick-start.ipynb      
   - title: HOOK
