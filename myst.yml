@@ -3,7 +3,7 @@ project:
   title: DEDL Notebook Gallery
   plugins:
   - type: javascript
-    path: filter.mjs
+    path: static/filter.mjs
   toc:
   - file: index.md
   - title: HDA
@@ -44,7 +44,6 @@ project:
  
 site:
   template: book-theme
-  # hide_toc: true
   hide_footer_links: true
   options:
     style: _static/custom.css
@@ -52,3 +51,7 @@ site:
     logo: img/logo_bar.png
   parts: 
     footer: footer.md
+  scripts:
+    - url: _static/filter.js
+      defer: true
+      type: module

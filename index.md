@@ -39,39 +39,22 @@ Further information available in DestinE Data Lake documentation: https://destin
 
 ## Notebook Filter
 
-<button data-filter-tag="HDA">Nur HDA</button>
-<button data-filter-tag="Core API">Nur Core API</button>
-<button data-filter-tag="all">Alle</button>
-
-<div class="notebook-card" data-tags="HDA Core API" style="display: flex;">Notebook 1: HDA</div>
-<div class="notebook-card" data-tags="DataCube" style="display: flex;">Notebook 2: DataCube</div>
-
-<a href="#" onclick="event.preventDefault(); Array.from(document.querySelectorAll('.notebook-card')).forEach(card => { const tags = card.dataset.tags || ''; card.style.display = tags.includes('HDA') ? 'flex' : 'none'; });">Nur HDA anzeigen</a>
-
-
-<p><a href="#" onclick="filterCards('HDA'); return false;">Nur HDA anzeigen</a></p>
-<p><a href="#" onclick="filterCards('all'); return false;">Alle anzeigen</a></p>
-
-
-<div class="card" data-tags="HDA,Core API" style="display: flex;">
-  Notebook 1
+<!-- Buttons -->
+<div id="filter-buttons">
+  <button class="filter-button" data-filter-tag="all">All</button>
+  <button class="filter-button" data-filter-tag="climate">Climate</button>
+  <button class="filter-button" data-filter-tag="hydrology">Hydrology</button>
 </div>
 
-<div class="card" data-tags="DataCube" style="display: flex;">
-  Notebook 2
+<!-- Notebook Cards -->
+<div class="notebook-gallery">
+  <div class="notebook-card" data-tags="climate hydrology">
+    <h3>Notebook 1</h3>
+  </div>
+  <div class="notebook-card" data-tags="glacier">
+    <h3>Notebook 2</h3>
+  </div>
 </div>
-
-
-<script>
-  function filterCards(tag) {
-    const cards = document.querySelectorAll('.notebook-card');
-    cards.forEach(card => {
-      const tags = card.dataset.tags || "";
-      card.style.display = (tag === 'all' || tags.includes(tag)) ? 'block' : 'none';
-    });
-  }
-</script>
-
 
 
 <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
