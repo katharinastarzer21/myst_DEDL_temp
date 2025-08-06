@@ -48,7 +48,7 @@ site:
   options:
     style: _static/custom.css
     favicon: img/EUMETSAT-icon.ico
-    logo: img/logo_bar.png
+    logo: img/logo.png
   parts: 
     footer: footer.md
   scripts:
