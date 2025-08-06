@@ -154,22 +154,18 @@ footer.footer {
   color: white;
 }
 
-
-:root {
-  --custom-header-height: 100px;
-}
-
 div[class*="h-[60px]"] {
-  height: var(--custom-header-height) !important;
+  height: 200px !important;
 }
 
-.fixed.xl\:article-grid {
-  top: var(--custom-header-height) !important;
+/* Make the logo taller and not blurry */
+.theme-book__header-logo img {
+  height: 80px;
+  width: auto;
+  max-height: none;
+  image-rendering: auto;
 }
 
-img.h-9 {
-  height: calc(var(--custom-header-height) * 0.6) !important;
-}
 /* .navbar-brand img {
   height: 60px !important;   
   max-height: none !important;
