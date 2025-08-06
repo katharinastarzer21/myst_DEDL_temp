@@ -154,21 +154,19 @@ footer.footer {
   color: white;
 }
 
-
-:root {
-  --custom-header-height: 100px;
-}
-
 div[class*="h-[60px]"] {
-  height: var(--custom-header-height) !important;
+  height: 100px !important;
 }
 
-.fixed.xl\:article-grid {
-  top: var(--custom-header-height) !important;
+main {
+  padding-top: 100px !important;  /* match your new header height */
 }
 
 img.h-9 {
-  height: calc(var(--custom-header-height) * 0.6) !important;
+  height: 60px !important;
+  max-height: none !important;
+  width: auto !important;
+  image-rendering: auto;
 }
 /* .navbar-brand img {
   height: 60px !important;   
