@@ -175,7 +175,7 @@ a.button:hover {
   color: #003078;
 }
 
-a.sd-btn.active {
+a.button.active {
   background-color: #1d70b8 !important;
   color: #fff !important;
   border-color: #1d70b8 !important;
