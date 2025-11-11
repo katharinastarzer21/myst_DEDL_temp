@@ -33,5 +33,5 @@ jobs:
           echo "${{ steps.changes.outputs.CHANGED }}" > changed_files.txt
           while IFS= read -r nb; do
             echo "Validating: $nb"
-            python scripts/validate_notebook.py "$nb"
+            python .github/scripts/validate_notebook.py "$nb"
           done < changed_files.txt
