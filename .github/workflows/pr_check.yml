@@ -2,7 +2,7 @@ name: Validate Notebooks
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging]
 
 jobs:
   validate:
