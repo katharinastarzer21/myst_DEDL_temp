@@ -30,6 +30,8 @@ jobs:
       - name: Validate notebooks
         if: contains(steps.changes.outputs.CHANGED, '.ipynb')
         run: |
-          for nb in ${{ steps.changes.outputs.CHANGED }}; do
+          echo "${{ steps.changes.outputs.CHANGED }}" > changed_files.txt
+          while IFS= read -r nb; do
+            echo "Validating: $nb"
             python scripts/validate_notebook.py "$nb"
-          done
+          done < changed_files.txt
