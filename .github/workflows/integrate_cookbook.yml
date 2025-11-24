@@ -33,12 +33,12 @@ jobs:
       - name: Parse issue and update cookbook.json
         run: python .github/scripts/parse_issue.py
 
-      - name: Commit and push updated cookbook.json
+      - name: Commit and push updated cookbooks.json
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
-          git add cookbook.json
+          git add cookbooks.json
           git commit -m "Update cookbook.json from issue #${{ github.event.issue.number }}" \
             || echo "No changes to commit"
 
