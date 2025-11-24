@@ -9,18 +9,16 @@ permissions:
   issues: read
 
 env:
-  ALLOWED_USERS: "katharinastarzer21 koenifra serenaateum danaele christophreimer"
+  ALLOWED_USERS: "katharinastarzer21,koenifra,serenaateum,danaele,christophreimer"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     if: >
-      (
-        github.event_name == 'issues' &&
-        github.event.action == 'closed' &&
-        (github.actor == 'env.ALLOWED_USERS')
-      )
+      github.event_name == 'issues' &&
+      github.event.action == 'closed' &&
+      contains('katharinastarzer21,koenifra,serenaateum,danaele,christophreimer', github.actor)
 
     steps:
       - name: Checkout Lab repo (staging)
@@ -30,9 +28,6 @@ jobs:
 
       - name: Dump Issue body to file
         run: echo "${{ github.event.issue.body }}" > issue_body.txt
-
-      - name: Parse issue and update cookbooks.json
-        run: python .github/scripts/parse_issue.py
 
       - name: Validate notebooks in external repo BEFORE updating JSON
         run: |
@@ -61,12 +56,13 @@ jobs:
             python .github/scripts/validate_notebook.py "$nb"
           done < notebooks.txt
 
+      - name: Parse issue and update cookbooks.json
+        run: python .github/scripts/parse_issue.py
 
       - name: Commit and push updates to STAGING
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-
           git add cookbooks.json
           git commit -m "Update cookbook.json from issue #${{ github.event.issue.number }}" || echo "No changes to commit"
           git push origin main
