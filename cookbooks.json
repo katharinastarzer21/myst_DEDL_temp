@@ -6,5 +6,9 @@
   {
     "repo_url": "https://github.com/katharinastarzer21/dedl-notebook-template.git",
     "root_path": "THIRD"
+  },
+  {
+    "repo_url": "https://github.com/destination-earth/DestinE-DataLake-NotebookTemplate.git",
+    "root_path": "DEDL"
   }
 ]
