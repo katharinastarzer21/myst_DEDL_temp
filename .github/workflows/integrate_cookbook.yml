@@ -29,35 +29,48 @@ jobs:
       - name: Dump Issue body to file
         run: echo "${{ github.event.issue.body }}" > issue_body.txt
 
+      - name: Parse issue and update cookbooks.json
+        run: python .github/scripts/parse_issue.py
+
       - name: Validate notebooks in external repo BEFORE updating JSON
         run: |
-          URL=$(grep "repo_url" issue_body.txt | sed 's/repo_url://;s/"//g' | xargs)
-          ROOT=$(grep "Cookbook Title" issue_body.txt | sed 's/.*: //')
-          
-          echo "Cloning external repo: $URL"
-          git clone --depth 1 "$URL" external_repo
+          echo "Repo URL: $REPO_URL"
+          echo "Root Path: $ROOT_PATH"
 
-          TARGET="external_repo/$ROOT"
-          if [ ! -d "$TARGET" ]; then
-            echo "ERROR: Folder $ROOT not found in external repo."
+          if [ -z "$REPO_URL" ]; then
+            echo "ERROR: REPO_URL is empty!"
             exit 1
           fi
 
-          echo "Validating notebooks in $TARGET ..."
+          if [ -z "$ROOT_PATH" ]; then
+            echo "ERROR: ROOT_PATH is empty!"
+            exit 1
+          fi
+
+          echo "Cloning external repo: $REPO_URL"
+          git clone --depth 1 "$REPO_URL" external_repo
+
+          TARGET="external_repo/$ROOT_PATH"
+          if [ ! -d "$TARGET" ]; then
+            echo "ERROR: Folder '$ROOT_PATH' not found in external repo."
+            exit 1
+          fi
+
+          echo "Validating notebooks in: $TARGET"
           find "$TARGET" -name "*.ipynb" > notebooks.txt
 
           if [ ! -s notebooks.txt ]; then
-            echo "ERROR: No notebooks found in $TARGET"
+            echo "ERROR: No .ipynb files found inside '$ROOT_PATH'"
             exit 1
           fi
 
           while IFS= read -r nb; do
-            echo "Validating $nb..."
+            echo "Validating $nb ..."
             python .github/scripts/validate_notebook.py "$nb"
           done < notebooks.txt
 
-      - name: Parse issue and update cookbooks.json
-        run: python .github/scripts/parse_issue.py
+
+
 
       - name: Commit and push updates to STAGING
         run: |
