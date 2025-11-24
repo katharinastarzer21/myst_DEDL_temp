@@ -1,0 +1,45 @@
+name: Integrate External Cookbook
+
+on:
+  issues:
+    types: [closed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.issue.state == 'closed' &&
+        contains(github.event.issue.labels.*.name, 'add-repo')
+      )
+
+    steps:
+      - name: Checkout Lab repo (staging)
+        uses: actions/checkout@v4
+        with:
+          ref: staging
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dump Issue body to file
+        run: echo "${{ github.event.issue.body }}" > issue_body.txt
+
+      - name: Parse issue and update cookbook.json
+        run: python scripts/parse_issue.py
+
+      - name: Commit and push updated cookbook.json
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add cookbook.json
+          git commit -m "Update cookbook.json from issue #${{ github.event.issue.number }}" \
+            || echo "No changes to commit"
+
+          git push origin staging

@@ -17,19 +17,21 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
       - name: List changed notebooks
         id: changes
         run: |
-          echo "CHANGED<<EOF" >> $GITHUB_OUTPUT
-          git diff --name-only origin/main...HEAD | grep ".ipynb" || true
-          echo "EOF" >> $GITHUB_OUTPUT
+          FILES=$(git diff --name-only origin/main...HEAD | grep ".ipynb" || true)
+          {
+            echo 'CHANGED<<EOF'
+            echo "$FILES"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
 
       - name: Validate notebooks
-        if: steps.changes.outputs.CHANGED != ''
+        if: contains(steps.changes.outputs.CHANGED, '.ipynb')
         run: |
-          for nb in ${{ steps.changes.outputs.CHANGED }}; do
-            python scripts/validate_notebook.py "$nb"
-          done
+          echo "${{ steps.changes.outputs.CHANGED }}" > changed_files.txt
+          while IFS= read -r nb; do
+            echo "Validating: $nb"
+            python .github/scripts/validate_notebook.py "$nb"
+          done < changed_files.txt
