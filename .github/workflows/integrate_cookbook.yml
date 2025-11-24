@@ -21,10 +21,10 @@ jobs:
       )
 
     steps:
-      - name: Checkout Lab repo (staging)
+      - name: Checkout Lab repo main
         uses: actions/checkout@v4
         with:
-          ref: staging
+          ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Dump Issue body to file
@@ -42,4 +42,4 @@ jobs:
           git commit -m "Update cookbook.json from issue #${{ github.event.issue.number }}" \
             || echo "No changes to commit"
 
-          git push origin staging
+          git push origin main
