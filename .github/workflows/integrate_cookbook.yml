@@ -34,6 +34,34 @@ jobs:
       - name: Parse issue and update cookbooks.json
         run: python .github/scripts/parse_issue.py
 
+      - name: Validate notebooks in external repo BEFORE updating JSON
+        run: |
+          URL=$(grep "repo_url" issue_body.txt | sed 's/repo_url://;s/"//g' | xargs)
+          ROOT=$(grep "Cookbook Title" issue_body.txt | sed 's/.*: //')
+          
+          echo "Cloning external repo: $URL"
+          git clone --depth 1 "$URL" external_repo
+
+          TARGET="external_repo/$ROOT"
+          if [ ! -d "$TARGET" ]; then
+            echo "ERROR: Folder $ROOT not found in external repo."
+            exit 1
+          fi
+
+          echo "Validating notebooks in $TARGET ..."
+          find "$TARGET" -name "*.ipynb" > notebooks.txt
+
+          if [ ! -s notebooks.txt ]; then
+            echo "ERROR: No notebooks found in $TARGET"
+            exit 1
+          fi
+
+          while IFS= read -r nb; do
+            echo "Validating $nb..."
+            python .github/scripts/validate_notebook.py "$nb"
+          done < notebooks.txt
+
+
       - name: Commit and push updates to STAGING
         run: |
           git config user.name "github-actions"
