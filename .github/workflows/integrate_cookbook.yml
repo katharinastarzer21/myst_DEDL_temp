@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Lab repo (staging)
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: staging
 
       - name: Dump Issue body to file
         run: echo "${{ github.event.issue.body }}" > issue_body.txt
@@ -78,4 +78,4 @@ jobs:
           git config user.email "actions@github.com"
           git add cookbooks.json
           git commit -m "Update cookbook.json from issue #${{ github.event.issue.number }}" || echo "No changes to commit"
-          git push origin main
+          git push origin staging
