@@ -16,9 +16,7 @@ jobs:
     if: >
       github.event_name == 'workflow_dispatch' ||
       (
-        github.event.issue.state == 'closed' &&
-        contains(github.event.issue.labels.*.name, 'add-repo')
-      )
+        github.event.issue.state == 'closed')
 
     steps:
       - name: Checkout Lab repo main
