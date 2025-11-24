@@ -50,9 +50,9 @@ jobs:
           echo "Cloning external repo: $REPO_URL"
           git clone --depth 1 "$REPO_URL" external_repo
 
-          TARGET="external_repo/$ROOT_PATH"
+          TARGET="external_repo/notebooks"
           if [ ! -d "$TARGET" ]; then
-            echo "ERROR: Folder '$ROOT_PATH' not found in external repo."
+            echo "ERROR"
             exit 1
           fi
 
