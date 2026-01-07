@@ -18,7 +18,8 @@ jobs:
     if: >
       github.event_name == 'issues' &&
       github.event.action == 'closed' &&
-      contains('katharinastarzer21,koenifra,serenaateum,danaele,christophreimer', github.actor)
+      contains(fromJson('["katharinastarzer21","koenifra","serenaateum","danaele","christophreimer"]'), github.actor) &&
+      contains(github.event.issue.labels.*.name, 'add-repo')
 
     steps:
       - name: Checkout Lab repo (staging)
@@ -32,7 +33,7 @@ jobs:
       - name: Parse issue and update cookbooks.json
         run: python .github/scripts/parse_issue.py
 
-      - name: Validate notebooks in external repo BEFORE updating JSON
+      - name: Validate notebooks in external repo
         run: |
           echo "Repo URL: $REPO_URL"
           echo "Root Path: $ROOT_PATH"
@@ -68,8 +69,6 @@ jobs:
             echo "Validating $nb ..."
             python .github/scripts/validate_notebook.py "$nb"
           done < notebooks.txt
-
-
 
 
       - name: Commit and push updates to STAGING
