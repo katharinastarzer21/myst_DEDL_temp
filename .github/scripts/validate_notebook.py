@@ -34,7 +34,6 @@ def field_exists(field: str, yaml_text: str) -> bool:
     pattern = rf"^{field}:"     # field must start at beginning of a line
     return re.search(pattern, yaml_text, re.MULTILINE) is not None
 
-
 def validate_notebook(path: Path):
     print(f"Validating {path} ...")
 
